@@ -1,0 +1,49 @@
+.fundo {
+    background-color:#323232;
+    width: 8%;
+    height: 100%;
+    align-items: center;
+    display: inline-block;
+}
+
+.lista {
+    list-style: none;
+}
+
+.fonte {
+    color: #FFF;
+    font-size: 18px;
+}
+
+.item {
+    border-bottom: 2px solid #FFF;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    display: flex;
+}
+
+.texto {
+    display: block;
+}
+
+.icone {
+    padding-bottom:5px;
+    align-items: center;
+    margin: 10px;
+}   
+
+.logo {
+    margin: 12px;
+}
+
+li > label:hover {
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.label {
+    margin-left: 20px;
+}

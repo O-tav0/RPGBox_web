@@ -1,0 +1,54 @@
+.ordemElementos {
+    float: left;
+  }
+  
+.fundoMenu {
+    background-color:#323232;
+    width: 8%;
+    height: 100vh;
+    align-items: center;
+    display: inline-block;
+}
+
+.html,
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100vp;
+  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+  border: none;
+}
+
+.fundo {
+  background-color:#787878;
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  align-items: center;
+  height: 100vh;
+  width: 25%;
+  margin-top: 0;
+  margin-left: 600px;
+  margin-bottom: 0;
+}
+
+.border-gradient {
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
+}
+
+.titulo {
+  margin-top: 80px;
+}
+
+.iconeNome {
+  display: inline-block;
+  margin: 2px;
+}
+
