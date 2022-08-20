@@ -81,10 +81,20 @@ body {
   margin-left: 60px;
 }
 
+.botao {
+  text-align: center;
+}
+
 .botaoRegistrarse {
    /* The alpha value allows the text and background color
    of the button to still show through. */
     background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
     border-radius: 5px;
+    width: 70px;
+    display: inline-block;
+}
+
+.dataCampanha {
+  float: left;
 }
 

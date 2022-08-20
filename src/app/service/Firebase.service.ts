@@ -54,6 +54,12 @@ export class FirebaseService {
     return usuarioEstaLogado;
   }
 
+  public deslogarUsuario(): void {
+    autenticacaoFirebase.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['']);
+  }
+
   constructor(private router: Router) {}
 }
 

@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './index/index.component';
 import { AuthGuard } from './shared/services/AuthGuard';
+import { MenuInternoComponent } from './menu-interno/menu-interno.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthGuard } from './shared/services/AuthGuard';
     CadastroUsuarioComponent,
     LoginComponent,
     IndexComponent,
+    MenuInternoComponent,
   ],
   imports: [
     FormsModule,
