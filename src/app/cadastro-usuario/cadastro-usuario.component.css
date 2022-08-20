@@ -52,3 +52,39 @@ body {
   margin: 2px;
 }
 
+.input-field input[type=text]:focus + label {
+  background: #FFF;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.input-field input[type=password]:focus + label {
+  background: #FFF;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #FFF;
+  box-shadow: 0 1px 0 0 #FFF;
+}
+
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #FFF;
+  box-shadow: 0 1px 0 0 #FFF;
+}
+
+.tamanhoForm {
+  margin-left: 60px;
+}
+
+.botaoRegistrarse {
+   /* The alpha value allows the text and background color
+   of the button to still show through. */
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+}
+

@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyBC98T2JgVqp9koVI47gG8AzSwW_jG0bto',
+    authDomain: 'rpgbox-82296.firebaseapp.com',
+    projectId: 'rpgbox-82296',
+    storageBucket: 'rpgbox-82296.appspot.com',
+    messagingSenderId: '970692728607',
+    appId: '1:970692728607:web:a0de71c0a397c15355822a',
+  },
 };
 
 /*
