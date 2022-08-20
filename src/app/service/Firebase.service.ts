@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
+import { User } from '../shared/services/user';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,11 +31,12 @@ export class FirebaseService {
   public fazerLoginFirebase(email: string, senha: string): void {
     autenticacaoFirebase
       .signInWithEmailAndPassword(email, senha)
-      .then(() => {
+      .then((user) => {
         alert('Usuario ' + email + ' logado com sucesso');
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['index']);
       })
-      .catch(() => alert('Erro'));
+      .catch(() => localStorage.setItem('user', 'null'));
   }
 
   public criarUsuarioFirebase(email: string, senha: string): void {
@@ -44,6 +46,12 @@ export class FirebaseService {
         console.log(`Usuario ${user.user?.email} enviado ao Firebase`);
       })
       .catch((error) => alert(error.message));
+  }
+
+  public usuarioEstaLogado(): Boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const usuarioEstaLogado: boolean = user !== null ? true : false;
+    return usuarioEstaLogado;
   }
 
   constructor(private router: Router) {}

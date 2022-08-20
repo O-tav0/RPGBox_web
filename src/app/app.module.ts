@@ -9,9 +9,9 @@ import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.componen
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './index/index.component';
+import { AuthGuard } from './shared/services/AuthGuard';
 
 @NgModule({
   declarations: [
@@ -27,10 +27,9 @@ import { IndexComponent } from './index/index.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
