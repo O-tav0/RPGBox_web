@@ -54,6 +54,11 @@ export class FirebaseService {
     return usuarioEstaLogado;
   }
 
+  public recuperaEmailUsuarioLogado(): string {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user.user.email;
+  }
+
   public deslogarUsuario(): void {
     autenticacaoFirebase.signOut();
     localStorage.removeItem('user');
