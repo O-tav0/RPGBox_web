@@ -2,8 +2,11 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <br /> <br /> <br /> <br />
+    <br /> <br />
     <div class="conteudo">
+        <div class="row">
+            <h3 class="corFonte"> Minhas Campanhas </h3> <br />
+        </div>
         <div class="row">
             <div class="col l3 m6 espacamento" *ngFor="let campanha of listaDeCampanhas | async">
                 <div class="card corCard">
@@ -11,14 +14,14 @@
                         <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" width="300" height="200">
                     </div>
                     <div class="card-content">
-                        <span class="card-title corFonte">{{campanha.tituloCampanha}}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        <span class="card-title corFonte tamanhoTituloCampanha"> {{campanha.tituloCampanha}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-pencil right iconesEdicao" viewBox="0 0 16 16">
                                 <path
                                     d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                             </svg>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-trash right iconesEdicao" viewBox="0 0 16 16">
                                 <path
                                     d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -28,18 +31,78 @@
                         </span>
                         <br /> <br />
 
-                        <button class=" btn waves-effect waves-light red botaoDetalhes right">
+                        <button class=" btn waves-effect waves-light red botaoDetalhes right"
+                            routerLink="/detalhesCampanha/{{campanha.sqCampanha}}"
+                            (click)="selecionarCampanha(campanha.sqCampanha)">
                             Detalhes
                             <img src="assets/detalharCampanha.png" width="25" height="25" class="iconeBotao">
                         </button>
 
 
+                        <p class="labelCriacaoCampanha"> Criada em: </p>
                         <div class="corFonte"> {{campanha.dataCriacao}} </div>
 
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="right sticky">
+            <img src="assets/iconeAdicionar.png" width="90" height="80" (click)="mostrarModalCadastroCampanha()">
 
+        </div>
+
+        <p-dialog header="Cadastro de Campanha" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
+            [draggable]="false" [resizable]="false">
+            <p class="m-0">
+            <form class="col s12" (ngSubmit)="cadastrarCampanha()" [formGroup]="formCadastroCampanha">
+
+                <div *ngIf="imagemCampanha != null">
+                    <img src="{{imagemCampanha}}" height="450px" width="100%" class="card-image">
+                </div>
+
+                <br /> <br /> <br />
+
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn waves-effect waves-light red botaoArquivo">
+                            <span>Arquivo</span>
+                            <input #imgCampanha type="file" accept="image/png image/jpeg"
+                                (change)="tratarImagemSelecionada($any(imgCampanha.files))">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="input-field col s12 corFonte">
+                        <input id="last_name" type="text" formControlName="titulo" maxlength="20">
+                        <label for="last_name">Título da campanha</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea" type="text"
+                                [formGroup]="formCadastroCampanha" formControlName="descricao"></textarea>
+                            <label for="textarea1">Descrição da Campanha</label>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <ng-template pTemplate="footer">
+                <button class=" btn waves-effect waves-light red botaoDetalhes right" (click)="cadastrarCampanha()">
+                    Cadastrar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                </button>
+            </ng-template>
+        </p-dialog>
+
+    </div>
 </div>

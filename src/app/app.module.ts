@@ -9,10 +9,15 @@ import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.componen
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { LoginComponent } from './login/login.component';
 import { environment } from 'src/environments/environment';
+import * as $ from 'jquery';
 import { HttpClientModule } from '@angular/common/http';
 import { IndexComponent } from './index/index.component';
 import { AuthGuard } from './shared/services/AuthGuard';
 import { MenuInternoComponent } from './menu-interno/menu-interno.component';
+import { DetalheCampanhaComponent } from './detalhe-campanha/detalhe-campanha.component';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,7 @@ import { MenuInternoComponent } from './menu-interno/menu-interno.component';
     LoginComponent,
     IndexComponent,
     MenuInternoComponent,
+    DetalheCampanhaComponent,
   ],
   imports: [
     FormsModule,
@@ -30,6 +36,10 @@ import { MenuInternoComponent } from './menu-interno/menu-interno.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ButtonModule,
+    DialogModule,
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

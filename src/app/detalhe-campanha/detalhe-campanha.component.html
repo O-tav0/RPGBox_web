@@ -1,0 +1,16 @@
+<div class="ordemElementos fundoMenu">
+    <menu-interno></menu-interno>
+</div>
+<div class="html" *ngIf="campanhaSelecionada | async as campanha">
+
+    <div class="containerImagem">
+        <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" class="img-container .img-to-fit">
+    </div>
+
+    <div class="center">
+        <h3> {{campanha.tituloCampanha}} </h3> <br />
+
+        <p> {{campanha.descricaoCampanha}} </p>
+    </div>
+
+</div>
