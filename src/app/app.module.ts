@@ -18,6 +18,11 @@ import { DetalheCampanhaComponent } from './detalhe-campanha/detalhe-campanha.co
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { PersonagensCampanhaComponent } from './personagens-campanha/personagens-campanha.component';
+import { AnotacoesCampanhaComponent } from './anotacoes-campanha/anotacoes-campanha.component';
+import { CombatesCampanhaComponent } from './combates-campanha/combates-campanha.component';
+import { HistoricoCampanhaComponent } from './historico-campanha/historico-campanha.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IndexComponent,
     MenuInternoComponent,
     DetalheCampanhaComponent,
+    PersonagensCampanhaComponent,
+    AnotacoesCampanhaComponent,
+    CombatesCampanhaComponent,
+    HistoricoCampanhaComponent,
   ],
   imports: [
     FormsModule,
@@ -40,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DialogModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MegaMenuModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

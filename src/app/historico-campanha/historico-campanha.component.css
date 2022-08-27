@@ -1,0 +1,22 @@
+.ordemElementos {
+    float: left;
+}
+
+.fundoMenu {
+    background-color: #323232;
+    width: 8%;
+    height: 100vh;
+    align-items: center;
+    display: inline-block;
+}
+
+.html,
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vp;
+    height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    border: none;
+}
