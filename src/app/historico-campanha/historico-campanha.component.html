@@ -2,5 +2,52 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <p>historico-campanha works!</p>
+
+    <div class="conteudo">
+        <h5>Histórico de Eventos da Campanha</h5>
+        <p-timeline [value]="historicoCampanha" align="alternate" styleClass="customized-timeline">
+            <!-- <ng-template pTemplate="marker" let-event>
+                <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                    <i [ngClass]="event.icon"></i>
+                </span>
+            </ng-template> -->
+            <ng-template pTemplate="content" let-event>
+                <p-card [header]="event.descricaoEventoCampanha" [subheader]="event.dataEvento">
+                    <!-- <img *ngIf="event.image" [src]="'assets/showcase/images/demo/product/' + event.image"
+                        [alt]="event.name" width="200" class="shadow-2" /> -->
+                    <div *ngIf="event.personagem != null">
+                        <div class="row">
+                            <div class="col md6">
+                                <img *ngIf="event.personagem.imagemPersonagem != null"
+                                    src="data:image/jpeg;base64,{{event.personagem.imagemPersonagem}}"
+                                    [alt]="event.name" width="150" class="shadow-2"
+                                    class="imagemPersonagens bloco espacamento" />
+                            </div>
+                            <div class="col md6 espacamento">
+                                <div class="bloco espacamento">
+
+                                    <h5> Nome </h5>
+                                    <p> {{event.personagem.nomePersonagem}} </p>
+
+                                    <h5> Classe</h5>
+                                    <p> {{event.personagem.classePersonagem}} </p>
+
+                                </div>
+
+                                <div class="bloco espacamento">
+
+                                    <h5> Raça </h5>
+                                    <p> {{event.personagem.racaPersonagem}} </p>
+
+                                    <h5> Tipo do Personagem </h5>
+                                    <p> {{event.personagem.tipoPersonagem}} </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+            </ng-template>
+        </p-timeline>
+    </div>
 </div>

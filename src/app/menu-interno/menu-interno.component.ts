@@ -43,7 +43,7 @@ export class MenuInternoComponent implements OnInit {
               items: [{label: 'Anotações', routerLink:[`/campanha/${this.sqCampanhaSelecionada}/anotacoes`], icon: 'pi pi-book'}],
             },
             {
-              items: [{label: 'Combate', routerLink:[`/campanha/${this.sqCampanhaSelecionada}/combates`], icon: 'pi pi-shield'}],
+              items: [{label: 'Combates', routerLink:[`/campanha/${this.sqCampanhaSelecionada}/combates`], icon: 'pi pi-shield'}],
             },
             {
               items: [{label: 'Linha do tempo', routerLink:[`/campanha/${this.sqCampanhaSelecionada}/linhaDoTempo`], icon: 'pi pi-history'}],

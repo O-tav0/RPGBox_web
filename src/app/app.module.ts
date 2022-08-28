@@ -23,6 +23,8 @@ import { PersonagensCampanhaComponent } from './personagens-campanha/personagens
 import { AnotacoesCampanhaComponent } from './anotacoes-campanha/anotacoes-campanha.component';
 import { CombatesCampanhaComponent } from './combates-campanha/combates-campanha.component';
 import { HistoricoCampanhaComponent } from './historico-campanha/historico-campanha.component';
+import {TimelineModule} from 'primeng/timeline';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { HistoricoCampanhaComponent } from './historico-campanha/historico-campa
     BrowserModule,
     BrowserAnimationsModule,
     MegaMenuModule,
+    TimelineModule,
+    CardModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

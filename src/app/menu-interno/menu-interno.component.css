@@ -96,6 +96,7 @@ li>label:hover {
     border-image-slice: 1;
     border-width: 2px;
     border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
+    border-radius: 5px;
 }
 
 :host ::ng-deep .p-megamenu-submenu-header {

@@ -19,4 +19,62 @@ body {
     max-width: 100%;
     overflow-x: hidden;
     border: none;
+    scroll-behavior: smooth;
+}
+
+.custom-marker {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+::ng-deep {
+
+    .p-timeline-event-content,
+    .p-timeline-event-opposite {
+        line-height: 1;
+    }
+}
+
+.conteudo {
+    width: 70%vh;
+}
+
+.imagemPersonagens {
+    border-radius: 50%;
+}
+
+.bloco {
+    display: inline-block;
+}
+
+.espacamento {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+:host ::ng-deep .p-timeline-event-marker {
+    border: 2px solid #323232;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+}
+
+:host ::ng-deep .p-timeline-event-connector {
+    background-color: #fff;
+}
+
+:host ::ng-deep .p-card-body {
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
+    border-radius: 5px;
+    background-color: #323232;
 }
