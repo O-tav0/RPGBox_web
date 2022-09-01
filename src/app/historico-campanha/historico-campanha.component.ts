@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PrimeIcons } from 'primeng/api';
 import { Historico } from '../models/Historico.model';
 import { EventoCampanhaService } from '../service/EventoCampanha.service';
 
@@ -10,6 +11,7 @@ import { EventoCampanhaService } from '../service/EventoCampanha.service';
 })
 export class HistoricoCampanhaComponent implements OnInit {
   public historicoCampanha: Historico[];
+  public iconAdicaoUsuario: string = PrimeIcons.USER_PLUS;
   
   public carregarHistoricoCampanha(): void{
     const sqCampanhaSelecionada = parseInt(this.route.snapshot.params['sqCampanha'], 10);
@@ -24,7 +26,6 @@ export class HistoricoCampanhaComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarHistoricoCampanha();
-  
   }
 
 }

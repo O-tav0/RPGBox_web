@@ -2,7 +2,7 @@ import { HabilidadePersonagem } from "./HabilidadePersonagem.model";
 export class Personagem {
     public classePersonagem: string;
     public habilidadesPersonagem: HabilidadePersonagem[];
-    public imagem: string;
+    public imagemPersonagem: string;
     public nivelPersonagem: number;
     public nomePersonagem: string;
     public pontosVida: number;
@@ -13,7 +13,7 @@ export class Personagem {
     constructor(
         classePersonagem: string,
         habilidadesPersonagem: HabilidadePersonagem[],
-        imagem: string,
+        imagemPersonagem: string,
         nivelPersonagem: number,
         nomePersonagem: string,
         pontosVida: number,
@@ -23,7 +23,7 @@ export class Personagem {
     ) {
         this.classePersonagem = classePersonagem;
         this.habilidadesPersonagem = habilidadesPersonagem;
-        this.imagem = imagem;
+        this.imagemPersonagem = imagemPersonagem;
         this.nivelPersonagem = nivelPersonagem;
         this.nomePersonagem = nomePersonagem;
         this.pontosVida = pontosVida;

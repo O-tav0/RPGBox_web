@@ -25,6 +25,8 @@ import { CombatesCampanhaComponent } from './combates-campanha/combates-campanha
 import { HistoricoCampanhaComponent } from './historico-campanha/historico-campanha.component';
 import {TimelineModule} from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
+import {AccordionModule} from 'primeng/accordion';
+import {DividerModule} from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { CardModule } from 'primeng/card';
     BrowserAnimationsModule,
     MegaMenuModule,
     TimelineModule,
-    CardModule
+    CardModule,
+    AccordionModule,
+    DividerModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

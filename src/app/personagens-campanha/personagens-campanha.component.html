@@ -2,5 +2,50 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <p>personagens-campanha works!</p>
+    <div class="posicionamentoListaPersonagens">
+        <h4> Personagens de NomeCampanha </h4>
+        <div class="espacamentoAccordion">
+            <p-accordion [multiple]="true">
+                <p-accordionTab header="Aventureiros" styleClass="tamanhoFonte">
+                    <div class="row">
+                        <div class="col md4 alinhamento espacamento" *ngFor="let aventureiro of aventureiros">
+                            <div class="item">
+                                <img src="data:image/jpeg;base64,{{aventureiro.imagemPersonagem}}" width="150"
+                                    class="imagemPersonagens" />
+                                <span class="caption">{{aventureiro.nomePersonagem}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="NPC's">
+                    <div class="row">
+                        <div class="col md4 alinhamento espacamento" *ngFor="let npc of npcs">
+
+                            <div class="item">
+                                <img src="data:image/jpeg;base64,{{npc.imagemPersonagem}}" width="150" class="shadow-2"
+                                    class="imagemPersonagens" />
+                                <span class="caption">{{npc.nomePersonagem}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Inimigos">
+                    <div class="row">
+                        <div class="col md4 alinhamento espacamento" *ngFor="let inimigo of inimigos">
+
+                            <div class="item" *ngIf=" inimigos.length> 0">
+                                <img src="data:image/jpeg;base64,{{inimigo.imagemPersonagem}}" width="150"
+                                    class="shadow-2" class="imagemPersonagens" />
+                                <span class="caption">{{inimigo.nomePersonagem}}</span>
+                            </div>
+
+                            <div *ngIf=" inimigos.length == 0">
+                                <p> Nenhum personagem Inimigo cadastrado ainda! </p>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </div>
 </div>

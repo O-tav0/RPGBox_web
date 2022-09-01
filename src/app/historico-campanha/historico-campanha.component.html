@@ -4,17 +4,17 @@
 <div class="html">
 
     <div class="conteudo">
-        <h5>Histórico de Eventos da Campanha</h5>
+        <h5>Histórico de Eventos da Campanha</h5> <br /> <br />
         <p-timeline [value]="historicoCampanha" align="alternate" styleClass="customized-timeline">
             <!-- <ng-template pTemplate="marker" let-event>
-                <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
-                    <i [ngClass]="event.icon"></i>
-                </span>
+                <div *ngIf="event.personagem != null">
+                    <span class="custom-marker shadow-2">
+                        <i [ngClass]="iconAdicaoUsuario" styleClass="p-timeline-event-marker"></i>
+                    </span>
+                </div>
             </ng-template> -->
             <ng-template pTemplate="content" let-event>
                 <p-card [header]="event.descricaoEventoCampanha" [subheader]="event.dataEvento">
-                    <!-- <img *ngIf="event.image" [src]="'assets/showcase/images/demo/product/' + event.image"
-                        [alt]="event.name" width="200" class="shadow-2" /> -->
                     <div *ngIf="event.personagem != null">
                         <div class="row">
                             <div class="col md6">

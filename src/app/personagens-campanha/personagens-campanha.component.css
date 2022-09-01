@@ -20,3 +20,77 @@ body {
     overflow-x: hidden;
     border: none;
 }
+
+.posicionamentoListaPersonagens {
+    margin-top: 100px;
+    margin-left: 80px;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+    background-color: #4D4D4D;
+    background: #4D4D4D;
+    border: none;
+    width: 40vw;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+    background-color: #4D4D4D;
+    background: #4D4D4D;
+    border: none;
+    width: 40vw;
+    font-size: 24px;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-content {
+    background-color: #4D4D4D;
+    background: #4D4D4D;
+    border: none;
+    width: 40vw;
+}
+
+.espacamentoAccordion {
+    margin-top: 50px;
+}
+
+.imagemPersonagens {
+    border-radius: 50%;
+}
+
+.bloco {
+    display: inline-block;
+}
+
+.espacamento {
+    margin: 10px;
+}
+
+.alinhamento {
+    display: flex;
+    align-items: center;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+}
+
+.caption {
+    display: block;
+}
+
+.bordaImagem {
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
+    border-radius: 50%;
+    background-color: #323232;
+}

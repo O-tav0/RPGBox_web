@@ -7,7 +7,7 @@ export class PersonagemDTO extends Personagem {
         sqPersonagem: number,
         classePersonagem: string,
         habilidadesPersonagem: HabilidadePersonagem[],
-        imagem: string,
+        imagemPersonagem: string,
         nivelPersonagem: number,
         nomePersonagem: string,
         pontosVida: number,
@@ -18,7 +18,7 @@ export class PersonagemDTO extends Personagem {
         super(
             classePersonagem,
             habilidadesPersonagem,
-            imagem,
+            imagemPersonagem,
             nivelPersonagem,
             nomePersonagem,
             pontosVida,
