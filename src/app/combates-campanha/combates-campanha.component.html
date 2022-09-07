@@ -2,5 +2,13 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <p>combates-campanha works!</p>
+    <p-pickList [source]="list1" [dragdrop]="true">
+        <ng-template let-car pTemplate="item">
+            <div>
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car}}
+                </div>
+            </div>
+            <button (click)="adicionarPersonagem(car)" value="Teste"> Teste</button>
+        </ng-template>
+    </p-pickList> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 </div>

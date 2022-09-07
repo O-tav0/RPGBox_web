@@ -12,7 +12,7 @@
             <img src="assets/rolagem-dados.png" width="65" height="60" class="icone">
         </li>
         <li class="item">
-            <label class="label-dados"> Rolar dados </label>
+            <label class="label-dados" (click)="visibleSidebar1 = true"> Rolar dados </label>
         </li>
         <div *ngIf="isCampanhaSelecionada == true">
             <li class="img-campanha">
@@ -38,3 +38,7 @@
         </li>
     </ul>
 </div>
+
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+    <h3>Rolagem de Dados</h3>
+</p-sidebar>

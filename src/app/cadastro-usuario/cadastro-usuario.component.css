@@ -1,13 +1,13 @@
 .ordemElementos {
-    float: left;
-  }
-  
+  float: left;
+}
+
 .fundoMenu {
-    background-color:#323232;
-    width: 8%;
-    height: 100vh;
-    align-items: center;
-    display: inline-block;
+  background-color: #323232;
+  width: 8%;
+  height: 100vh;
+  align-items: center;
+  display: inline-block;
 }
 
 .html,
@@ -22,7 +22,7 @@ body {
 }
 
 .fundo {
-  background-color:#787878;
+  background-color: #787878;
   text-align: center;
   font-size: 24px;
   color: #fff;
@@ -39,6 +39,7 @@ body {
   border-image-slice: 1;
   border-width: 2px;
 }
+
 .border-gradient-purple {
   border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
 }
@@ -52,17 +53,17 @@ body {
   margin: 2px;
 }
 
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus+label {
   background: #FFF;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-decoration: none;
 }
 
-.input-field input[type=password]:focus + label {
+.input-field input[type=password]:focus+label {
   background: #FFF;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-decoration: none;
 }
 
@@ -86,15 +87,14 @@ body {
 }
 
 .botaoRegistrarse {
-   /* The alpha value allows the text and background color
+  /* The alpha value allows the text and background color
    of the button to still show through. */
-    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
-    border-radius: 5px;
-    width: 70px;
-    display: inline-block;
+  background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+  border-radius: 5px;
+  display: inline-block;
+  width: auto;
 }
 
 .dataCampanha {
   float: left;
 }
-

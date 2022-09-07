@@ -20,3 +20,11 @@ body {
     overflow-x: hidden;
     border: none;
 }
+
+:host ::ng-deep .p-picklist-buttons {
+    display: none;
+}
+
+:host ::ng-deep .p-picklist-target-wrapper {
+    display: none;
+}

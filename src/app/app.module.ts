@@ -27,6 +27,13 @@ import {TimelineModule} from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 import {AccordionModule} from 'primeng/accordion';
 import {DividerModule} from 'primeng/divider';
+import {SidebarModule} from 'primeng/sidebar';
+import {PickListModule} from 'primeng/picklist';
+import {DropdownModule} from 'primeng/dropdown';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {PanelModule} from 'primeng/panel';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +64,13 @@ import {DividerModule} from 'primeng/divider';
     TimelineModule,
     CardModule,
     AccordionModule,
-    DividerModule
+    DividerModule,
+    SidebarModule,
+    PickListModule,
+    DropdownModule,
+    ScrollPanelModule,
+    VirtualScrollerModule,
+    PanelModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

@@ -23,21 +23,21 @@ body {
 
 .posicionamentoListaPersonagens {
     margin-top: 100px;
-    margin-left: 80px;
+    margin-left: 200px;
 }
 
 :host ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
     background-color: #4D4D4D;
     background: #4D4D4D;
     border: none;
-    width: 40vw;
+    width: 30vw;
 }
 
 :host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
     background-color: #4D4D4D;
     background: #4D4D4D;
     border: none;
-    width: 40vw;
+    width: 30vw;
     font-size: 24px;
 }
 
@@ -45,7 +45,7 @@ body {
     background-color: #4D4D4D;
     background: #4D4D4D;
     border: none;
-    width: 40vw;
+    width: 30vw;
 }
 
 .espacamentoAccordion {
@@ -79,7 +79,6 @@ div.item {
 img {
     width: 100px;
     height: 100px;
-    background-color: grey;
 }
 
 .caption {
@@ -87,10 +86,144 @@ img {
 }
 
 .bordaImagem {
+    border-radius: 50%;
+    background:
+        linear-gradient(#4d4d4d, #4d4d4d) padding-box,
+        linear-gradient(to left, #01C5F6, #FD7DFD) border-box;
+}
+
+:host ::ng-deep .p-divider-vertical:before {
+    position: fixed;
+    display: block;
+    top: 250px;
+    left: 56vw;
+    height: 60vh;
+    content: "";
+}
+
+:host ::ng-deep.p-divider.p-divider-vertical:before {
     border: 1px solid;
     border-image-slice: 1;
-    border-width: 2px;
-    border-image-source: linear-gradient(to left, #01C5F6, #FD7DFD);
-    border-radius: 50%;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 5px;
     background-color: #323232;
+}
+
+.corFonte {
+    color: #fff;
+}
+
+form {
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-file {
+    display: none;
+}
+
+
+.label-image {
+    cursor: pointer;
+    padding: 70px 30px;
+    color: #fff;
+    border: 2px solid #0000;
+    border-radius: 50%;
+    background:
+        linear-gradient(#4d4d4d, #4d4d4d) padding-box,
+        linear-gradient(to left, #01C5F6, #FD7DFD) border-box;
+}
+
+.posicionamentoForm {
+    margin-top: 220px;
+    margin-left: 150px;
+    position: absolute;
+}
+
+.informacoesPersonagem {
+    width: 60%;
+    margin-left: 250px;
+    margin-top: -130px;
+}
+
+.input-field input[type=text]:focus+label {
+    background: #FFF;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #FFF;
+    box-shadow: 0 1px 0 0 #FFF;
+}
+
+:host ::ng-deep .p-dropdown {
+    background-color: #323232;
+    color: #fff;
+    width: 100%;
+}
+
+:host ::ng-deep .p-dropdown-label {
+    background-color: #323232;
+    color: #fff;
+    width: 100%;
+}
+
+:host ::ng-deep .p-dropdown {
+    color: #fff;
+}
+
+:host ::ng-deep .p-dropdown-trigger {
+    color: #fff;
+}
+
+:host ::ng-deep .p-dropdown-items {
+    background-color: #323232;
+    color: #fff;
+}
+
+:host ::ng-deep .ng-star-inserted {
+    color: #fff;
+}
+
+.vidaENivel {
+    margin-top: -100px;
+    position: absolute;
+    width: 25%;
+}
+
+.tiposDePersonagens {
+    position: absolute;
+    margin-top: 100px;
+}
+
+.container-habilidade {
+
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.conteudoHabilidade {}
+
+.posicaoBotaoAdicionarHabilidade {
+    color: #fff;
+    margin-right: 5px;
+
+}
+
+.botaoDetalhes {
+    float: right;
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+}
+
+.sticky {
+    position: fixed;
+    top: 20px;
+    left: 200px;
 }

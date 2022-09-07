@@ -11,6 +11,7 @@ export class MenuInternoComponent implements OnInit {
   public isCampanhaSelecionada: boolean = false;
   public items: MegaMenuItem[];
   public sqCampanhaSelecionada: string;
+  public visibleSidebar1: any;
 
   public deslogarUsuario(): void {
     this.firebaseService.deslogarUsuario();
@@ -54,3 +55,5 @@ export class MenuInternoComponent implements OnInit {
     ];
   }
 }
+
+
