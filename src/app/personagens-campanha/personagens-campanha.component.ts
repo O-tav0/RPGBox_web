@@ -9,6 +9,8 @@ import { TipoDoPersonagemEnum, TipoPersonagem } from '../models/Tipopersonagem.m
 import { TipoDeHabilidadeEnum, TipoHabilidade } from '../models/TipoHabilidade.model';
 import { HabilidadePersonagem } from '../models/HabilidadePersonagem.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PersonagemService } from '../service/Personagem.service';
+import { PersonagemVO } from '../models/PersonagemVO.model';
 
 @Component({
   selector: 'app-personagens-campanha',
@@ -39,17 +41,19 @@ export class PersonagensCampanhaComponent implements OnInit {
     nome: new FormControl(),
     raca: new FormControl(),
     classe: new FormControl(),
-    tipo: new FormControl(),
     nivel: new FormControl(),
     vida: new FormControl(),
-    imagem: new FormControl(),
     tituloHabilidade: new FormControl(),
     descricaoHabilidade: new FormControl(),
   });
 
-  public tratarImagemSelecionada(files: FileList): void {
+  public tratarImagemSelecionada(): void {
+    
+    let elem: any;
+    elem = $("#imagemPersonagem");
+   
     const comp = this;
-    const arquivo = files.item(0);
+    const arquivo = elem[0].files[0];
     const promise = new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = function () {
@@ -65,6 +69,7 @@ export class PersonagensCampanhaComponent implements OnInit {
 
   public esconderCadastro(): void {
     this.displayCadastro = false;
+    this.formCadastroPersonagem.reset();
   }
 
   public mostrarCadastro(): void {
@@ -85,22 +90,43 @@ export class PersonagensCampanhaComponent implements OnInit {
     let novaHabilidade = new HabilidadePersonagem(this.formCadastroPersonagem.value.descricaoHabilidade, this.formCadastroPersonagem.value.tituloHabilidade, this.tipoHabilidadeSelecionado.nome.toUpperCase())
     this.habilidades.push(novaHabilidade);
     
-    this.formCadastroPersonagem.value.descricaoHabilidade = null;
-    this.formCadastroPersonagem.value.tituloHabilidade = null; 
+    this.formCadastroPersonagem.reset()
     
     this.display = false;
   }
 
   
   public cadastrarPersonagem(): void {
-    console.log('teste')
+    let img = null
+    if(this.imagemPersonagem != null) {
+      img = this.imagemPersonagem.substring(22, this.imagemPersonagem.length - 1)
+    }
+    
+    let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+
+    let novoPersonagem = new PersonagemVO(this.formCadastroPersonagem.value.nome, 
+      this.formCadastroPersonagem.value.raca, 
+      this.formCadastroPersonagem.value.classe, 
+      sqCampanha,
+      this.formCadastroPersonagem.value.vida,
+      img,
+      this.tipoSelecionado.nome.toUpperCase(),
+      this.formCadastroPersonagem.value.nivel,
+      this.habilidades);
+      
+      this.personagemService.cadastrarPersonagem(novoPersonagem).subscribe(() => {
+        alert('Personagem cadastrado com sucesso!')
+        this.recuperaPersonagensDaCampanha();
+      })
+
+      this.formCadastroPersonagem.reset();
   }
 
   public mostrarModalCadastroHabilidade() {
     this.display = true;
   }
 
-  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { 
+  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private personagemService: PersonagemService) { 
 
     this.tiposDePersonagens = [
       {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO},
@@ -119,6 +145,8 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.habilidades = [];
     this.displayCadastro = false;
     this.recuperaPersonagensDaCampanha();
+    this.tipoSelecionado = {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO}
+    this.tipoHabilidadeSelecionado = {nome: 'Ataque', valor: TipoDeHabilidadeEnum.ATAQUE}
   }
 
 }

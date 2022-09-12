@@ -123,19 +123,22 @@ form {
 }
 
 .input-file {
+    width: 38%;
+    margin-left: -130px;
     display: none;
 }
 
 
 .label-image {
     cursor: pointer;
-    padding: 70px 30px;
+    padding: 65px 65px;
     color: #fff;
     border: 2px solid #0000;
     border-radius: 50%;
     background:
         linear-gradient(#4d4d4d, #4d4d4d) padding-box,
         linear-gradient(to left, #01C5F6, #FD7DFD) border-box;
+
 }
 
 .posicionamentoForm {
@@ -192,14 +195,13 @@ form {
 }
 
 .vidaENivel {
-    margin-top: -100px;
+    margin-top: -220px;
     position: absolute;
     width: 25%;
 }
 
 .tiposDePersonagens {
-    position: absolute;
-    margin-top: 100px;
+    position: relative;
 }
 
 .container-habilidade {
@@ -208,12 +210,9 @@ form {
     padding: 15px;
 }
 
-.conteudoHabilidade {}
-
 .posicaoBotaoAdicionarHabilidade {
     color: #fff;
     margin-right: 5px;
-
 }
 
 .botaoDetalhes {

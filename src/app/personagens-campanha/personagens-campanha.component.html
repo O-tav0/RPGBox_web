@@ -63,49 +63,62 @@
         </div>
 
         <div class="bloco posicionamentoForm" *ngIf="displayCadastro == true">
-            <form (ngSubmit)="cadastrarPersonagem()" [formGroup]="formCadastroPersonagem">
+            <form [formGroup]="formCadastroPersonagem">
                 <div class="row">
                     <div class="col md6">
-                        <label for="imagemPersonagem" class="label-image">Adicionar Imagem</label>
+                        <label for="imagemPersonagem" class="label-image"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="25" height="25" fill="currentColor" class="bi bi-person-video"
+                                viewBox="0 0 16 16">
+                                <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                <path
+                                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2Zm10.798 11c-.453-1.27-1.76-3-4.798-3-3.037 0-4.345 1.73-4.798 3H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1.202Z" />
+                            </svg>
+                        </label>
                         <input id="imagemPersonagem" type="file" accept="image/png image/jpeg" class="input-file"
-                            (change)="tratarImagemSelecionada($any(imagemPersonagem.files))">
+                            (change)="tratarImagemSelecionada()">
+
                     </div>
                     <div class=" col md6 informacoesPersonagem">
                         <div class="input-field">
-                            <input id="#nome" type="text">
+                            <input id="#nome" type="text" formControlName="nome">
                             <label for="nome"> Nome do Personagem </label>
                         </div>
 
                         <div class="input-field">
-                            <input id="#raca" type="text">
+                            <input id="#raca" type="text" formControlName="raca">
                             <label for="raca"> Raça do Personagem </label>
                         </div>
 
                         <div class="input-field">
-                            <input id="#classe" type="text">
+                            <input id="#classe" type="text" formControlName="classe">
                             <label for="classe"> Classe do Personagem </label>
                         </div>
+                        <br />
+                        <div class="selectTipopersonagem">
+                            <p class="corFonte"> Tipo do Personagem </p>
+                            <p-dropdown [options]="tiposDePersonagens" [(ngModel)]="tipoSelecionado" optionLabel="nome"
+                                [ngModelOptions]="{standalone: true}" styleClass="tiposDePersonagens">
+                            </p-dropdown>
+                        </div>
 
-                        <p class="corFonte"> Tipo do Personagem </p>
-                        <p-dropdown [options]="tiposDePersonagens" [(ngModel)]="tipoSelecionado" optionLabel="nome"
-                            [ngModelOptions]="{standalone: true}" styleClass="tiposDePersonagens">
-                        </p-dropdown>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col md2 vidaENivel">
-                        <div class="input-field">
-                            <input id="#nivel" type="text">
-                            <label for="nivel"> Nível </label>
-                        </div>
-
-                        <div class="input-field">
-                            <input id="#vida" type="text">
-                            <label for="vida"> Vida </label>
-                        </div>
-
+                <br /> <br /><br />
+                <div class="col md2 vidaENivel">
+                    <div class="input-field">
+                        <input id="#nivel" type="text" formControlName="nivel">
+                        <label for="nivel"> Nível </label>
                     </div>
-                </div><br /> <br />
+
+                    <div class="input-field">
+                        <input id="#vida" type="text" formControlName="vida">
+                        <label for="vida"> Vida </label>
+                    </div>
+
+                </div>
+
+                <br />
+
                 <div class="row">
                     <h5 class="corFonte"> Habilidades <div class="right posicaoBotaoAdicionarHabilidade">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -130,17 +143,28 @@
 
                     </p-scrollPanel>
 
+                    <br />
+
+                    <button class=" btn waves-effect waves-light red botaoDetalhes right"
+                        (click)="cadastrarPersonagem()" type="button">
+                        OK <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                            <path
+                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>
+                    </button>
+
                     <p-dialog header="Cadastro de Habilidades" [(visible)]="display" [modal]="true"
                         [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
 
-                        <div class="input-field">
+                        <div class="input-field corFonte">
                             <input id="#titulohab" type="text" formControlName="tituloHabilidade">
                             <label for="titulohab"> Título da Habilidade </label>
                         </div>
 
-                        <div class="input-field">
-                            <textarea id="textarea1" class="materialize-textarea" type="text"
-                                formControlName="descricaoHabilidade"></textarea>
+                        <div class="input-field corFonte">
+                            <input id="textarea1" class="materialize-textarea" type="text"
+                                formControlName="descricaoHabilidade">
                             <label for="textarea1">Descrição da Habilidade</label>
                         </div>
 
@@ -151,7 +175,7 @@
                         <br /> <br /> <br /> <br /> <br />
                         <ng-template pTemplate="footer">
                             <button class=" btn waves-effect waves-light red botaoDetalhes right"
-                                (click)="adicionarHabilidade()">
+                                (click)="adicionarHabilidade()" type="button">
                                 Adicionar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                     fill="currentColor" class="bi bi-check iconeBotao" viewBox="0 0 16 16">
                                     <path

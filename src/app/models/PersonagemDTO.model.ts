@@ -4,7 +4,6 @@ import { Personagem } from "./Personagem.model";
 export class PersonagemDTO extends Personagem {
     public sqPersonagem: number;
     constructor(
-        sqPersonagem: number,
         classePersonagem: string,
         habilidadesPersonagem: HabilidadePersonagem[],
         imagemPersonagem: string,
@@ -26,6 +25,5 @@ export class PersonagemDTO extends Personagem {
             sqCampanha,
             tipoPersonagem
         );
-        this.sqPersonagem = sqPersonagem;
     }
 }
