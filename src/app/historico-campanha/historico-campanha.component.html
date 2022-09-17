@@ -20,29 +20,47 @@
                             <div class="col md6">
                                 <img *ngIf="event.personagem.imagemPersonagem != null"
                                     src="data:image/jpeg;base64,{{event.personagem.imagemPersonagem}}"
-                                    [alt]="event.name" width="150" class="shadow-2"
+                                    [alt]="event.name" width="120" height="120" class="shadow-2"
                                     class="imagemPersonagens bloco espacamento" />
                             </div>
                             <div class="col md6 espacamento">
                                 <div class="bloco espacamento">
 
-                                    <h5> Nome </h5>
+                                    <h5 class="infoPersonagem"> Nome </h5>
                                     <p> {{event.personagem.nomePersonagem}} </p>
 
-                                    <h5> Classe</h5>
+                                    <h5 class="infoPersonagem"> Classe</h5>
                                     <p> {{event.personagem.classePersonagem}} </p>
 
                                 </div>
 
                                 <div class="bloco espacamento">
 
-                                    <h5> Raça </h5>
+                                    <h5 class="infoPersonagem"> Raça </h5>
                                     <p> {{event.personagem.racaPersonagem}} </p>
 
-                                    <h5> Tipo do Personagem </h5>
+                                    <h5 class="infoPersonagem"> Tipo do Personagem </h5>
                                     <p> {{event.personagem.tipoPersonagem}} </p>
 
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="event.anotacao != null">
+                        <div class="row">
+
+                            <div class="col md6 espacamento">
+                                <div class="bloco espacamento">
+
+                                    <h5 class="infoPersonagem"> Código </h5>
+                                    <p> {{event.anotacao.sqAnotacao}} </p>
+
+                                    <h5 class="infoPersonagem"> Descrição </h5>
+                                    <p> {{event.anotacao.descricaoAnotacao}} </p>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
