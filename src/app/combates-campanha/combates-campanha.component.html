@@ -3,10 +3,14 @@
 </div>
 <div class="html">
     <div class="left sticky">
-        <img src="assets/iconeAdicionar.png" width="90" height="80">
+        <img src="assets/iconeAdicionar.png" width="90" height="80" (click)="mostrarFormulario()">
     </div>
 
-    <div class="containerForm">
+    <div class="labelInicial" *ngIf="displayLabel == true">
+        <h5> Cadastre um Combate </h5>
+    </div>
+
+    <div class="containerForm" *ngIf="displayFormulario == true">
         <div class="formularioCadastro">
             <div class="row">
                 <div clas="col md10">

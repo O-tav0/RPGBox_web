@@ -110,3 +110,9 @@ body {
 .imagemPersonagens {
     border-radius: 50%;
 }
+
+.labelInicial {
+    margin-top: 450px;
+    margin-left: 700px;
+    color: #787878;
+}

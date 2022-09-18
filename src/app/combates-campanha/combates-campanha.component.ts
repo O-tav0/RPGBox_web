@@ -20,6 +20,9 @@ export class CombatesCampanhaComponent implements OnInit {
 
   public sqCampanhaSelecionada = parseInt(this.route.snapshot.params['sqCampanha'], 10);
 
+  public displayFormulario: boolean = false;
+  public displayLabel: boolean = true;
+
   public formCadastroCombate: FormGroup = new FormGroup({
     tituloCombate: new FormControl(),
   });
@@ -44,6 +47,11 @@ export class CombatesCampanhaComponent implements OnInit {
     })
 
     return personagensSelecionadosVO;
+  }
+
+  public mostrarFormulario(): void {
+    this.displayFormulario = true;
+    this.displayLabel = false;
   }
 
   public carregarPersonagensDaCampanha(): void {
