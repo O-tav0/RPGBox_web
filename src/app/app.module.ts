@@ -33,6 +33,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {PanelModule} from 'primeng/panel';
+import {ToastModule} from 'primeng/toast';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import {PanelModule} from 'primeng/panel';
     DropdownModule,
     ScrollPanelModule,
     VirtualScrollerModule,
-    PanelModule
+    PanelModule,
+    ToastModule,
+    InputTextModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

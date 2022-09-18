@@ -2,13 +2,65 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <p-pickList [source]="list1" [dragdrop]="true">
-        <ng-template let-car pTemplate="item">
-            <div>
-                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car}}
+    <div class="left sticky">
+        <img src="assets/iconeAdicionar.png" width="90" height="80">
+    </div>
+
+    <div class="containerForm">
+        <div class="formularioCadastro">
+            <div class="row">
+                <div clas="col md10">
+                    <h4 class="posicionamentoLabelCadastro"> Cadastro de combate </h4>
                 </div>
             </div>
-            <button (click)="adicionarPersonagem(car)" value="Teste"> Teste</button>
-        </ng-template>
-    </p-pickList> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+            <div class="row">
+                <div class="col md 12">
+                    <form [formGroup]="formCadastroCombate">
+                        <div class="input-field tamanhoForm">
+                            <input id="#nome" type="text" formControlName="tituloCombate">
+                            <label for="nome"> Título do combate </label>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col md12">
+                    <p-pickList [source]="personagensDaCampanha" [target]="personagensSelecionados"
+                        sourceHeader="Personagens da campanha" targetHeader="Personagens no combate" [dragdrop]="true"
+                        [responsive]="true" [sourceStyle]="{'height':'30rem'}" [targetStyle]="{'height':'30rem'}"
+                        filterBy="name" sourceFilterPlaceholder="Search by name"
+                        targetFilterPlaceholder="Search by name">
+                        <ng-template let-product pTemplate="item">
+                            <div class="product-item">
+                                <div class="product-list-detail">
+                                    <div class="col md6">
+                                        <img src="data:image/jpeg;base64,{{product.imagemPersonagem}}" width="60"
+                                            height="60" class="shadow-2" class="imagemPersonagens bloco espacamento" />
+                                    </div>
+                                    <h5 class="mb-2">{{product.nomePersonagem}}</h5>
+                                </div>
+
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <button class=" btn waves-effect waves-light red botaoDetalhes" type="button"
+                    (click)="cadastrarCombate()">
+                    Cadastrar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>

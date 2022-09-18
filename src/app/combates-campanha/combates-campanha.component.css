@@ -26,5 +26,87 @@ body {
 }
 
 :host ::ng-deep .p-picklist-target-wrapper {
+    width: 400px;
+    margin-left: 60px;
+    margin-right: 100px;
+}
+
+.sticky {
+    position: fixed;
+    top: 20px;
+    left: 200px;
+}
+
+.labelInicio {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.input-field input[type=text]:focus+label {
+    background: #FFF;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #FFF;
+    box-shadow: 0 1px 0 0 #FFF;
+}
+
+.containerForm {
+    margin-left: 500px;
+    margin-top: 150px;
+    width: 800px;
+}
+
+:host ::ng-deep .p-picklist-filter-container {
     display: none;
+}
+
+.tamanhoForm {
+    size: 100px;
+    width: 590px;
+}
+
+.botaoDetalhes {
+    float: right;
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-right: 110px;
+}
+
+.posicionamentoLabelCadastro {
+    margin-left: 130px;
+    color: #fff;
+}
+
+.formularioCadastro {
+    margin-left: 80px;
+}
+
+:host ::ng-deep .p-picklist-list {
+    background-color: #323232;
+}
+
+:host ::ng-deep .p-picklist .p-picklist-header {
+    background-color: #323232;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 10px;
+    background-color: #323232;
+}
+
+:host ::ng-deep .p-picklist-item {
+    border-bottom: 1px solid #fff;
+
+}
+
+.imagemPersonagens {
+    border-radius: 50%;
 }

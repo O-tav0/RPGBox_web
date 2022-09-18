@@ -64,7 +64,9 @@ export class PersonagensCampanhaComponent implements OnInit {
 
     promise.then((img) => {
       comp.imagemPersonagem = img;
+      alert('Imagem carregada com sucesso');
     });
+    
   }
 
   public esconderCadastro(): void {
@@ -120,13 +122,19 @@ export class PersonagensCampanhaComponent implements OnInit {
       })
 
       this.formCadastroPersonagem.reset();
+      this.habilidades = [];
+      this.image = null;
+      this.imagemPersonagem = null;
   }
 
   public mostrarModalCadastroHabilidade() {
     this.display = true;
   }
 
-  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private personagemService: PersonagemService) { 
+  constructor(private campanhaService: CampanhaService,
+     private route: ActivatedRoute,
+     private personagemService: PersonagemService
+       ) { 
 
     this.tiposDePersonagens = [
       {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO},
@@ -148,5 +156,4 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.tipoSelecionado = {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO}
     this.tipoHabilidadeSelecionado = {nome: 'Ataque', valor: TipoDeHabilidadeEnum.ATAQUE}
   }
-
 }

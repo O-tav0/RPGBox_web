@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { CampanhaDTO } from '../models/CampanhaDTO.model';
 import { CampanhaVO } from '../models/CampanhaVO.model';
 import { PersonagemCampanhaDTO } from '../models/PersonagemCampanhaDTO.model';
+import { PersonagemDTO } from '../models/PersonagemDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,16 @@ export class CampanhaService {
       )
       .pipe(map((resposta: any) => resposta.objetoResposta));
   }
+
+  public buscarTodosPersonagensCampanha(
+    sqCampanha: number
+  ): Observable<PersonagemDTO[]> {
+    return this.http
+      .get<any>(
+        `http://localhost:8080/campanha/${sqCampanha}/personagens`
+      )
+      .pipe(map((resposta: any) => resposta.objetoResposta));
+  } 
 
   constructor(private http: HttpClient) {}
 }

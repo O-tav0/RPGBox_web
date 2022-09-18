@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { CombateVO, PersonagemCombateVO } from '../models/CombateVO.model';
+import { PersonagemDTO } from '../models/PersonagemDTO.model';
+import { CampanhaService } from '../service/Campanha.service';
+import { CombateService } from '../service/Combate.service';
+import { PersonagemService } from '../service/Personagem.service';
 
 @Component({
   selector: 'app-combates-campanha',
@@ -7,17 +14,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CombatesCampanhaComponent implements OnInit {
 
-  public list1: any[];
+  public personagensDaCampanha: PersonagemDTO[];
 
-  public adicionarPersonagem(teste: any): void {
-    console.log(this.list1)
-    console.log(this.list1.indexOf('teste 1'))
+  public personagensSelecionados: PersonagemDTO[];
+
+  public sqCampanhaSelecionada = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+
+  public formCadastroCombate: FormGroup = new FormGroup({
+    tituloCombate: new FormControl(),
+  });
+
+  public cadastrarCombate(): void {
+    const personagens = this.preencherObjetoPersonagensSelecionados();
+    const novoCombate = new CombateVO(this.sqCampanhaSelecionada, this.formCadastroCombate.value.tituloCombate, personagens); 
+
+    this.CombateService.cadastrarCombnate(novoCombate).subscribe(() => {
+      alert('Combate cadastro com sucesso!')
+    })
+
+    this.ngOnInit();
+    this.formCadastroCombate.reset();
   }
 
-  constructor() { }
+  public preencherObjetoPersonagensSelecionados(): PersonagemCombateVO[] {
+    const personagensSelecionadosVO: PersonagemCombateVO[] = [];
+    this.personagensSelecionados.forEach((personagem) => {
+      const vo = new PersonagemCombateVO(personagem.sqPersonagem);
+      personagensSelecionadosVO.push(vo)
+    })
+
+    return personagensSelecionadosVO;
+  }
+
+  public carregarPersonagensDaCampanha(): void {
+  
+    this.campanhaService.buscarTodosPersonagensCampanha(this.sqCampanhaSelecionada).subscribe((resposta) => {
+      this.personagensDaCampanha = resposta
+    })
+  }
+
+  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private CombateService: CombateService) { }
 
   ngOnInit(): void {
-    this.list1 = ['teste 1', 'teste 2', 'teste 3'];
+    this.carregarPersonagensDaCampanha();
+    this.personagensSelecionados = []
   } 
 
 }
