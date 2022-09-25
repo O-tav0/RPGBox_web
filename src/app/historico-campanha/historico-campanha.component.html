@@ -64,6 +64,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <div *ngIf="event.combate != null">
+                        <div class="row">
+
+                            <div class="col md6 espacamento">
+                                <div class="bloco espacamento">
+                                    <h5 class="infoPersonagem"> Código </h5>
+                                    <p> {{event.combate.sqCombate}} </p>
+
+                                    <h5 class="infoPersonagem"> Título do Combate </h5>
+                                    <p> {{event.combate.tituloCombate}} </p>
+                                </div>
+
+                                <div class="bloco espacamento">
+                                    <div class="containerCombate">
+                                        <h5 class="infoPersonagem"> Status </h5>
+                                        <p> {{event.combate.statusCombate}} </p>
+
+                                        <h5 class="infoPersonagem" (click)="mostrarModalParticipantesCombate()">
+                                            Participantes </h5>
+                                        <p-scrollPanel [style]="{width: '320px', height: '80px'}">
+                                            <div class="containerImagensPersonagemCombate">
+                                                <img *ngFor="let pers of event.combate.personagensDoCombate"
+                                                    src="data:image/jpeg;base64,{{pers.personagem.imagemPersonagem}}"
+                                                    [alt]="event.name" width="60" height="60" class="shadow-2"
+                                                    class="imagemPersonagensCombate bloco"
+                                                    pTooltip="{{pers.personagem.nomePersonagem}}" />
+                                            </div>
+                                        </p-scrollPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </p-card>
             </ng-template>
         </p-timeline>

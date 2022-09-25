@@ -12,6 +12,7 @@ import { EventoCampanhaService } from '../service/EventoCampanha.service';
 export class HistoricoCampanhaComponent implements OnInit {
   public historicoCampanha: Historico[];
   public iconAdicaoUsuario: string = PrimeIcons.USER_PLUS;
+  public display: boolean;
   
   public carregarHistoricoCampanha(): void{
     const sqCampanhaSelecionada = parseInt(this.route.snapshot.params['sqCampanha'], 10);
@@ -20,6 +21,10 @@ export class HistoricoCampanhaComponent implements OnInit {
       this.historicoCampanha = response
     })
 
+  }
+
+  public mostrarModalParticipantesCombate(): void {
+    this.display = true;
   }
 
   constructor(private route: ActivatedRoute, private eventoCampanhaService: EventoCampanhaService) { }

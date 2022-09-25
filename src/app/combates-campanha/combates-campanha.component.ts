@@ -38,7 +38,7 @@ export class CombatesCampanhaComponent implements OnInit {
       alert('Combate cadastro com sucesso!')
     })
 
-    this.ngOnInit();
+    this.carregarCombatesDaCampanha();
     this.formCadastroCombate.reset();
   }
 

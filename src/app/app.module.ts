@@ -35,6 +35,8 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {PanelModule} from 'primeng/panel';
 import {ToastModule} from 'primeng/toast';
 import {InputTextModule} from 'primeng/inputtext';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import {InputTextModule} from 'primeng/inputtext';
     VirtualScrollerModule,
     PanelModule,
     ToastModule,
-    InputTextModule
+    InputTextModule,
+    OverlayPanelModule,
+    TooltipModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

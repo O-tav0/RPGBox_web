@@ -33,8 +33,8 @@
                                     </svg>
                                 </p> <br /> <br />
                                 <label class="labelStatus fonteBranca"> {{combate.statusCombate}} </label> <button
-                                    class="btn  botaoDetalhes right">
-                                    Iniciar Combate
+                                    class="btn botaoDetalhes right">
+                                    Iniciar
                                     <img src="assets/detalharCampanha.png" width="20" height="20" class="iconeBotao">
                                 </button>
                             </div>
@@ -49,7 +49,7 @@
         <h5> Cadastre um Combate </h5>
     </div>
 
-    <div class="col-2 bloco">
+    <div class="col-2 bloco" *ngIf="displayLabel == false">
         <p-divider layout="vertical">
 
         </p-divider>
