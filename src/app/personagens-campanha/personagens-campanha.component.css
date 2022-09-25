@@ -216,7 +216,6 @@ form {
 }
 
 .botaoDetalhes {
-    float: right;
     background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
     border-radius: 5px;
     display: flex;
@@ -227,4 +226,8 @@ form {
     position: fixed;
     top: 20px;
     left: 200px;
+}
+
+.bloco {
+    display: inline-block;
 }

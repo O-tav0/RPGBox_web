@@ -15,5 +15,6 @@ public cadastrarCombnate(novoCombate: CombateVO): Observable<any> {
     novoCombate
     );
 }
+
     constructor(private http: HttpClient) {}
   }

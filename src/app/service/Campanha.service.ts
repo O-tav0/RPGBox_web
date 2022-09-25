@@ -9,6 +9,7 @@ import { CampanhaDTO } from '../models/CampanhaDTO.model';
 import { CampanhaVO } from '../models/CampanhaVO.model';
 import { PersonagemCampanhaDTO } from '../models/PersonagemCampanhaDTO.model';
 import { PersonagemDTO } from '../models/PersonagemDTO.model';
+import { CombateDTO } from '../models/CombateDTO.model';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +58,11 @@ export class CampanhaService {
         `http://localhost:8080/campanha/${sqCampanha}/personagens`
       )
       .pipe(map((resposta: any) => resposta.objetoResposta));
-  } 
+  }
+  
+  public buscarCombatesDaCampanha(sqCampanha: number): Observable<CombateDTO[]> {
+    return this.http.get<any>(`http://localhost:8080/campanha/combates/${sqCampanha}`).pipe(map((resposta: any) => resposta.objetoResposta));
+}
 
   constructor(private http: HttpClient) {}
 }
