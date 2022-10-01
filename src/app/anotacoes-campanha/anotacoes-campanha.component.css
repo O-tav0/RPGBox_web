@@ -20,3 +20,168 @@ body {
     overflow-x: hidden;
     border: none;
 }
+
+.sticky {
+    position: fixed;
+    top: 20px;
+    left: 200px;
+}
+
+.posicionamentoLabelCadastro {
+    margin-left: 130px;
+    color: #fff;
+}
+
+.formularioCadastro {
+    margin-left: 80px;
+}
+
+:host ::ng-deep .p-picklist-list {
+    background-color: #323232;
+}
+
+:host ::ng-deep .p-picklist .p-picklist-header {
+    background-color: #323232;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 10px;
+    background-color: #323232;
+}
+
+:host ::ng-deep .p-picklist-item {
+    border-bottom: 1px solid #fff;
+
+}
+
+.imagemPersonagens {
+    border-radius: 50%;
+}
+
+.labelInicial {
+    margin-top: 450px;
+    margin-left: 700px;
+    color: #787878;
+}
+
+.posicionamentoLabelListagem {
+    margin-top: 130px;
+    margin-left: 150px;
+}
+
+.cardListagemCombate {
+    margin-left: 80px;
+    width: 100px;
+}
+
+.cardListagemCombate {
+    width: 800px;
+    border-radius: 10px;
+}
+
+.card-content {
+    background-color: #FFFDC6;
+    border-radius: 10px;
+}
+
+.containerListagemCombate {
+    margin-left: 180px;
+    display: inline-block;
+    width: 600px;
+    display: inline-block;
+}
+
+.fonteBranca {
+    color: #fff;
+}
+
+.botaoDetalhes {
+    float: right;
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    height: 30px;
+}
+
+.iconesEdicao {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 40px;
+}
+
+.card {
+    width: 500px;
+}
+
+:host ::ng-deep .p-divider-vertical:before {
+    position: fixed;
+    display: block;
+    top: 250px;
+    left: 56vw;
+    height: 60vh;
+    content: "";
+}
+
+:host ::ng-deep.p-divider.p-divider-vertical:before {
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 5px;
+    background-color: #323232;
+}
+
+.fontePreta {
+    color: #000;
+}
+
+.labelInicio {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.input-field input[type=text]:focus+label {
+    background: #FFF;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #FFF;
+    box-shadow: 0 1px 0 0 #FFF;
+}
+
+.containerForm {
+    left: 1100px;
+    top: 100px;
+    width: 800px;
+    display: inline-block;
+    position: absolute;
+}
+
+:host ::ng-deep .p-picklist-filter-container {
+    display: none;
+}
+
+.tamanhoForm {
+    size: 100px;
+    width: 590px;
+}
+
+.botaoDetalhes {
+    float: right;
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.posicionamentoLabelCadastro {
+    margin-left: 130px;
+    color: #fff;
+}
+
+:host ::ng-deep .p-inputtext {
+    background: #323232;
+}

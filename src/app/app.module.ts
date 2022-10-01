@@ -37,6 +37,8 @@ import {ToastModule} from 'primeng/toast';
 import {InputTextModule} from 'primeng/inputtext';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {TooltipModule} from 'primeng/tooltip';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 
 
 @NgModule({
@@ -78,7 +80,8 @@ import {TooltipModule} from 'primeng/tooltip';
     ToastModule,
     InputTextModule,
     OverlayPanelModule,
-    TooltipModule
+    TooltipModule,
+    InputTextareaModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

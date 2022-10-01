@@ -23,3 +23,14 @@ body {
     border-bottom: 1px solid #FFF;
     box-shadow: 0 1px 0 0 #FFF;
 }
+
+input,
+select,
+textarea {
+    color: #fff;
+}
+
+textarea:focus,
+input:focus {
+    color: #fff;
+}

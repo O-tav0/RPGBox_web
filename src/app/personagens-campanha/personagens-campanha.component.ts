@@ -92,8 +92,6 @@ export class PersonagensCampanhaComponent implements OnInit {
     let novaHabilidade = new HabilidadePersonagem(this.formCadastroPersonagem.value.descricaoHabilidade, this.formCadastroPersonagem.value.tituloHabilidade, this.tipoHabilidadeSelecionado.nome.toUpperCase())
     this.habilidades.push(novaHabilidade);
     
-    this.formCadastroPersonagem.reset()
-    
     this.display = false;
   }
 

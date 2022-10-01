@@ -16,9 +16,5 @@ export class UsuarioService {
     );
   }
 
-  // public pedidosPorCliente(codigo: number): Observable<Pedido[]> {
-  //     return this.http.get(`http://localhost:8080/pedidos/porCliente?codigo=${codigo}`).pipe(map((resposta: any) => resposta))
-  // }
-
   constructor(private http: HttpClient) {}
 }

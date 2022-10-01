@@ -2,5 +2,69 @@
     <menu-interno></menu-interno>
 </div>
 <div class="html">
-    <p>anotacoes-campanha works!</p>
-</div>
+    <div class="left sticky">
+        <img src="assets/iconeAdicionar.png" width="90" height="80" (click)="mostrarFormulario()">
+    </div>
+
+    <div class="col-2 bloco">
+        <p-divider layout="vertical">
+
+        </p-divider>
+    </div>
+
+    <div class="containerListagemCombate" *ngIf="listaDeAnotacoes.length > 0">
+        <h4 class="posicionamentoLabelListagem fonteBranca"> Anotações da Campanha </h4> <br />
+
+        <div class="row">
+            <p-scrollPanel [style]="{width: '620px', height: '600px'}">
+                <div class="col md6">
+                    <div class="card horizontal cardListagemCombate" *ngFor="let anotacao of listaDeAnotacoes">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <label class="fontePreta"> Criada em: </label>
+                                <p> {{anotacao.dataAnotacao}} </p> <br />
+                                <label class="fontePreta"> Número da anotação </label>
+                                <p class="tituloCombate"> {{anotacao.sqAnotacao}}
+                                </p> <br />
+                                <p class="tituloCombate"> {{anotacao.descricaoAnotacao}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-scrollPanel>
+        </div>
+    </div>
+
+    <div class="containerForm" *ngIf="displayFormulario == true">
+        <div class="formularioCadastro">
+            <div class="row">
+                <div clas="col md10">
+                    <h4 class="posicionamentoLabelCadastro"> Adicionar anotação </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col md 12">
+                    <form [formGroup]="formCadastroAnotacao">
+                        <div class="input-field corFonte">
+                            <p for="textarea1" class="fonteBranca">Descrição da Anotação</p>
+                            <textarea [rows]="10" [cols]="80" pInputTextarea [autoResize]="true"
+                                formControlName="descricao"></textarea>
+                        </div>
+
+                        <br />
+                        <button class=" btn waves-effect waves-light red botaoDetalhes right" type="button"
+                            (click)="cadastrarAnotacao()">
+                            Adicionar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                                <path
+                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                            </svg>
+                        </button>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>

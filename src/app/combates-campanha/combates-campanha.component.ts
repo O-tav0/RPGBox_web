@@ -15,7 +15,7 @@ import { PersonagemService } from '../service/Personagem.service';
 })
 export class CombatesCampanhaComponent implements OnInit {
 
-  public personagensDaCampanha: PersonagemDTO[];
+  public personagensDaCampanha: PersonagemDTO[] = [];
 
   public personagensSelecionados: PersonagemDTO[];
 
@@ -24,7 +24,7 @@ export class CombatesCampanhaComponent implements OnInit {
   public displayFormulario: boolean = false;
   public displayLabel: boolean = false;
 
-  public combatesCampanha: CombateDTO[];
+  public combatesCampanha: CombateDTO[] = [];
 
   public formCadastroCombate: FormGroup = new FormGroup({
     tituloCombate: new FormControl(),
@@ -36,6 +36,7 @@ export class CombatesCampanhaComponent implements OnInit {
 
     this.CombateService.cadastrarCombnate(novoCombate).subscribe(() => {
       alert('Combate cadastro com sucesso!')
+      this.carregarCombatesDaCampanha();
     })
 
     this.carregarCombatesDaCampanha();
@@ -73,7 +74,6 @@ export class CombatesCampanhaComponent implements OnInit {
   public carregarCombatesDaCampanha(): void {
     this.campanhaService.buscarCombatesDaCampanha(this.sqCampanhaSelecionada).subscribe((response) => {
       this.combatesCampanha = response;
-      console.table(this.combatesCampanha);
     })
     
   }
