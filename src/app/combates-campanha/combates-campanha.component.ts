@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { CombateDTO } from '../models/CombateDTO.model';
 import { CombateVO, PersonagemCombateVO } from '../models/CombateVO.model';
 import { PersonagemDTO } from '../models/PersonagemDTO.model';
@@ -78,7 +79,13 @@ export class CombatesCampanhaComponent implements OnInit {
     
   }
 
-  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private CombateService: CombateService) { }
+  public confirm(sqCombate: number): void {
+    if (confirm("Deseja iniciar o combate ? Uma vez iniciado, precisa ser finalizado!") == true) {
+      this.roteador.navigate([`/combate/${sqCombate}/gerenciar`])
+    } 
+  }
+
+  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private CombateService: CombateService, private roteador: Router) { }
 
   ngOnInit(): void {
     this.carregarPersonagensDaCampanha();

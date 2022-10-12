@@ -38,6 +38,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputTextareaModule} from 'primeng/inputtextarea';
+import { GenrenciarCombateComponent } from './genrenciar-combate/genrenciar-combate.component';
+
 
 
 
@@ -55,6 +57,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     AnotacoesCampanhaComponent,
     CombatesCampanhaComponent,
     HistoricoCampanhaComponent,
+    GenrenciarCombateComponent,
+    
   ],
   imports: [
     FormsModule,

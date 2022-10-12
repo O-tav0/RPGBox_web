@@ -1,0 +1,278 @@
+.ordemElementos {
+    float: left;
+}
+
+.fundoMenu {
+    background-color: #323232;
+    width: 8%;
+    height: 100vh;
+    align-items: center;
+    display: inline-block;
+}
+
+.html,
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vp;
+    height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+    border: none;
+}
+
+.containerGerenciarCombate {
+    margin-top: 50px;
+    margin-left: 110px;
+    background-color: #323232;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 10px;
+    background-color: #323232;
+    width: 80vw;
+    height: 90vh;
+}
+
+.containerContadorTurnos {
+    margin-left: 720px;
+}
+
+.fonteBranca {
+    color: #fff;
+}
+
+.posicaoContagemTurnosGrande {
+    margin-top: -30px;
+    margin-left: 25px;
+}
+
+.posicaoContagemTurnosPequena {
+    margin-top: -30px;
+    margin-left: 30px;
+}
+
+.containerPersonagens {
+    margin-left: 720px;
+}
+
+.imagemPersonagensCombate {
+    border-radius: 50%;
+}
+
+.carroselPersonagens {
+    margin-left: -20px;
+}
+
+.tamanhoPersonagens {
+    width: 300px;
+}
+
+:host ::ng-deep .p-carousel-container {
+    width: 500px;
+}
+
+:host ::ng-deep .p-component-carrosel {
+    width: 500px;
+}
+
+.nomePersonagem {
+    width: 400px;
+    border: 1px solid #fff;
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
+
+.alinhamento {
+    display: flex;
+    align-items: center;
+}
+
+:host ::ng-deep .p-carousel-indicators {
+    display: none;
+}
+
+:host ::ng-deep .p-carousel-next {
+    display: none;
+}
+
+:host ::ng-deep .p-carousel-prev {
+    display: none;
+}
+
+.selectHabilidades {
+    padding: 5px;
+    background-color: #4d4d4d;
+    width: 200px;
+}
+
+.containerForm {
+    margin-left: -280px;
+    margin-top: 100px;
+}
+
+.espacoEntreForms {
+    margin-right: 200px;
+}
+
+.containerDescricaoHabilidade {
+    width: 230px;
+    height: 150px;
+    background-color: #4d4d4d;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.fonteDescricaoHabilidade {
+    color: #fff;
+    font-size: 12px;
+}
+
+.containerFinalForm {
+    margin-left: 455px;
+    margin-top: -170px;
+}
+
+.botaoDetalhes {
+    float: right;
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+    width: 200px;
+}
+
+.containerRodape {
+    width: 80vw;
+    margin-top: 50px;
+}
+
+.botaoFinalizarAcao {
+    margin-left: -600px;
+}
+
+.inputDano {
+    width: 200px;
+}
+
+.botaoVisualizarLogs {
+    margin-left: -430px;
+}
+
+.fonteBotoes {
+    font-size: 12px;
+}
+
+.botaoFinalizarCombate {
+    margin-left: 950px;
+}
+
+:host ::ng-deep .p-picklist-list {
+    background-color: #4d4d4d;
+}
+
+:host ::ng-deep .p-picklist .p-picklist-header {
+    background-color: #323232;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 10px;
+    background-color: #323232;
+}
+
+:host ::ng-deep .p-picklist-item {
+    border-bottom: 1px solid #fff;
+    font-size: 12px;
+}
+
+:host ::ng-deep .p-picklist-filter-container {
+    display: none;
+}
+
+:host ::ng-deep .p-picklist-buttons {
+    display: none;
+}
+
+:host ::ng-deep .p-picklist-target-wrapper {
+    width: 400px;
+    margin-left: 60px;
+    margin-right: 100px;
+    display: none;
+}
+
+.imagemPersonagens {
+    border-radius: 50%;
+}
+
+.containerOrdemCombate {
+    width: 400px;
+    position: absolute;
+    margin-left: -680px;
+    margin-top: 20px;
+}
+
+.labelVoltar {
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.fonteNomePersonagemOrdemCombate {
+    font-size: 18px;
+}
+
+.labelVoltar:hover {
+    text-decoration: underline;
+}
+
+.botaoVisualizarLogs:hover {
+    text-decoration: underline;
+}
+
+.botaoFinalizarCombate:hover {
+    text-decoration: underline;
+}
+
+:host ::ng-deep .p-dialog {
+    background-color: #323232;
+    border: 1px solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: linear-gradient(to top, #01C5F6, #FD7DFD);
+    border-radius: 10px;
+    background-color: #323232;
+}
+
+.modalTurnos {
+    margin-left: 400px;
+}
+
+.containerPersonagensDoTurno {
+    margin-left: 330px;
+}
+
+.containerDescricaoHabilidadeModal {
+    width: 350px;
+    margin-left: -15px;
+}
+
+.posicaoDivisoria {
+    width: 100%;
+}
+
+.habilidadeUtilizada {
+    margin-left: 30px;
+}
+
+.containerDano {
+    margin-left: 35px;
+}
+
+.danoCausadoModal {
+    margin-left: 50px;
+}

@@ -56,7 +56,7 @@ body {
 }
 
 .containerForm {
-    left: 1100px;
+    left: 1050px;
     top: 100px;
     width: 800px;
     display: inline-block;
@@ -159,6 +159,12 @@ body {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 40px;
+}
+
+.iconesLog {
+    color: #fff;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .card {

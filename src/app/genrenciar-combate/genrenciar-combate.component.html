@@ -1,0 +1,231 @@
+<div class="ordemElementos fundoMenu">
+    <menu-interno></menu-interno>
+</div>
+<div class="html">
+    <div class="left fonteBranca labelVoltar" (click)="voltarPagina()"> <svg xmlns="http://www.w3.org/2000/svg"
+            width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+        </svg> Voltar </div>
+    <div class="containerGerenciarCombate">
+        <div class="containerContadorTurnos fonteBranca">
+            <div class="row">
+
+                <div class="containerOrdemCombate">
+                    <p-pickList [source]="products" sourceHeader="Ordem do Combate"
+                        targetHeader="Personagens no combate" [responsive]="true" [sourceStyle]="{'height':'20rem'}"
+                        [targetStyle]="{'height':'30rem'}" filterBy="name" sourceFilterPlaceholder="Search by name"
+                        targetFilterPlaceholder="Search by name">
+                        <ng-template let-product pTemplate="item">
+                            <div class="product-item">
+                                <div class="product-list-detail">
+                                    <div class="col md4">
+                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
+                                            {{products.indexOf(product) + 1}}
+                                        </h5>
+                                    </div>
+                                    <div class="col md6">
+                                        <img src="data:image/jpeg;base64,{{product.personagem.imagemPersonagem}}"
+                                            width="60" height="60" class="shadow-2"
+                                            class="imagemPersonagens bloco espacamento" />
+                                    </div>
+                                    <div class="col md2">
+                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
+                                            {{product.personagem.nomePersonagem}}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+                <div class="col md8">
+                    <h5> Turno </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="nrTurno >= 10">
+                    <div class="col md12 posicaoContagemTurnosGrande">
+                        <h5> {{nrTurno}} </h5>
+                    </div>
+                </div>
+
+                <div *ngIf="nrTurno < 10">
+                    <div class="col md12 posicaoContagemTurnosPequena">
+                        <h5> {{nrTurno}} </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="containerPersonagens">
+            <div class="row">
+                <div class="col md12 fonteBranca">
+                    <h5> Vez de: </h5>
+                </div>
+            </div>
+
+            <div class="carroselPersonagens">
+                <div class="row">
+                    <div class="col md12 fonteBranca">
+                        <div class="alinhamento">
+                            <div class="tamanhoPersonagens item">
+                                <img src="data:image/jpeg;base64,{{personagemSelecionado.personagem.imagemPersonagem}}"
+                                    width="120" height="120" class="shadow-2" class="imagemPersonagensCombate"
+                                    pTooltip="{{personagemSelecionado.personagem.pontosDeVida}}" />
+                                <span class="car-buttons mt-5 nomePersonagem">
+                                    {{personagemSelecionado.personagem.nomePersonagem}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerForm">
+                <div class=row>
+                    <div class="col md6 espacoEntreForms">
+                        <div class="input-field col s12">
+                            <p class="fonteBranca"> Habilidade </p>
+                            <select style="display: block;" class="selectHabilidades"
+                                [(ngModel)]="habilidadeSelecionada">
+                                <option value="" disabled selected>Escolha a habilidade</option>
+                                <option [ngValue]="hab"
+                                    *ngFor="let hab of personagemSelecionado.personagem.habilidadesPersonagem">
+                                    {{hab.nomeHabilidade}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col md6">
+                        <div class="input-field col s12">
+                            <p class="fonteBranca"> Alvo </p>
+                            <select style="display: block;" class="selectHabilidades" [(ngModel)]="alvoSelecionado">
+                                <option value="" disabled selected>Escolha o alvo</option>
+                                <option *ngFor="let pers of products" [ngValue]="pers">
+                                    {{pers.personagem.nomePersonagem}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="containerDescricaoHabilidade">
+                        <div class="col md6" *ngIf="habilidadeSelecionada != null">
+                            <p-scrollPanel [style]="{width: '230px', height: '100px'}">
+                                <label class="fonteDescricaoHabilidade">
+                                    {{habilidadeSelecionada.descricaoHabilidade}}
+                                </label>
+                            </p-scrollPanel>
+                        </div>
+                    </div>
+
+                    <div class="col md6">
+                        <div class="containerFinalForm">
+                            <div class="input-field md6 inputDano">
+                                <input id="dano" type="text" [(ngModel)]="danoCausado">
+                                <label for="dano">Dano causado</label>
+                            </div>
+                            <br /> <br />
+                            <div class="botaoFinalizarAcao">
+                                <button class="btn botaoDetalhes" (click)="finalizarAcao()">
+                                    Finalizar Ação
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="containerRodape">
+                        <div class="left item fonteBranca botaoVisualizarLogs" (click)="showModalDialog()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-file-text" viewBox="0 0 16 16">
+                                <path
+                                    d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
+                                <path
+                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+                            </svg> <br />
+                            <span class="caption fonteBotoes">
+                                Visualizar Logs
+                            </span>
+                        </div>
+
+                        <div class="item fonteBranca botaoFinalizarCombate" (click)="gravarLogDoCombate()">
+                            <div class="pi pi-shield" style="font-size: 40px"></div> <br />
+                            <span class="caption fonteBotoes">
+                                Finalizar Combate
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog header="Logs do Combate" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+        [draggable]="false" [resizable]="false">
+        <p class="m-0">
+
+        <div *ngIf="turnosDoCombate.length != 0">
+            <div class="containerTurno" *ngFor="let log of turnosDoCombate">
+                <h5 class="modalTurnos"> Turno {{log.numeroTurno}} </h5> <br />
+
+                <div class="containerPersonagensDoTurno" *ngFor="let acao of log.acoesDoTurno">
+                    <div class="row">
+                        <div class="col md5">
+
+                            <p> {{acao!.personagemQueUtilizou.nomePersonagem}} </p>
+                        </div>
+
+                        <div class="col md2">
+                            <img src="../assets/LoginIcon.png" width="50px" height="50px">
+                        </div>
+
+                        <div class="col md5">
+                            <p> {{acao!.personagemAlvo.nomePersonagem}} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col md12 habilidadeUtilizada">
+                            <p> Habilidade: {{acao!.habilidadeUtilizada.nomeHabilidade}} </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="containerDescricaoHabilidadeModal">
+                            <p-scrollPanel [style]="{width: '230px', height: '40px'}">
+                                <label class="fonteDescricaoHabilidade">
+                                    {{acao!.habilidadeUtilizada.descricaoHabilidade}}
+                                </label>
+                            </p-scrollPanel>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="containerDano">
+                            <div class="row">
+                                <div class="col md12">
+                                    Dano causado
+                                </div>
+                            </div>
+                            <div class=row>
+                                <p class="danoCausadoModal"> {{acao!.danoCausado}} </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+
+    </p-dialog>
+
+</div>

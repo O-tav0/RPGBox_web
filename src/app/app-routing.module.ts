@@ -4,6 +4,7 @@ import { AnotacoesCampanhaComponent } from './anotacoes-campanha/anotacoes-campa
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CombatesCampanhaComponent } from './combates-campanha/combates-campanha.component';
 import { DetalheCampanhaComponent } from './detalhe-campanha/detalhe-campanha.component';
+import { GenrenciarCombateComponent } from './genrenciar-combate/genrenciar-combate.component';
 import { HistoricoCampanhaComponent } from './historico-campanha/historico-campanha.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
@@ -39,6 +40,11 @@ const routes: Routes = [
   {
     path: 'campanha/:sqCampanha/linhaDoTempo',
     component: HistoricoCampanhaComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'combate/:sqCombate/gerenciar',
+    component: GenrenciarCombateComponent,
     canActivate: [AuthGuard],
   },
 ];
