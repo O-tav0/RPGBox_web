@@ -3,6 +3,7 @@ import { Personagem } from "./Personagem.model";
 
 export class PersonagemDTO extends Personagem {
     public sqPersonagem: number;
+    public pontosVidaAtual: number;
     constructor(
         classePersonagem: string,
         habilidadesPersonagem: HabilidadePersonagem[],

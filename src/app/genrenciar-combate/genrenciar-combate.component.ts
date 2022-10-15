@@ -22,7 +22,7 @@ import { PersonagemLog } from '../models/PersonagemLog.model';
 export class GenrenciarCombateComponent implements OnInit {
 
   public combateSelecionado: CombateDTO;
-  public products: PersonagemCombateDTO[];
+  public products: PersonagemCombateDTO[] = [];
   
   public personagemSelecionado: any;
   public indexPersonagemSelecionado = 0;
@@ -52,13 +52,30 @@ export class GenrenciarCombateComponent implements OnInit {
         }
         return 0;
       });
+      this.products.forEach((obj) => {
+        obj.personagem.pontosVidaAtual = obj.personagem.pontosDeVida
+      })
+      
       this.personagemSelecionado = this.products[0]   
     })
   }
 
   public finalizarAcao(): void {
     this.acoesDoTurno.push(this.getAcaoPersonagem());
+    this.reduzirVidaPersonagemAlvo();
     this.trocarPersonagemSelecionado(); 
+  }
+
+  public reduzirVidaPersonagemAlvo(): void {
+    if(this.products.length == 1) {
+      alert('Somente um personagem restante no combate. Finalize o combate!')
+    } else {
+      this.alvoSelecionado.personagem.pontosVidaAtual = this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado;
+    if(this.alvoSelecionado.personagem.pontosVidaAtual <= 0) {
+      this.products.splice(this.products.indexOf(this.alvoSelecionado), 1);
+      this.products = [...this.products];
+    }
+    }
   }
 
   public trocarTurno(): void {
@@ -69,9 +86,12 @@ export class GenrenciarCombateComponent implements OnInit {
      this.turnosDoCombate.push(turnoAtual)
 
      this.nrTurno++;
+     this.acoesDoTurno = [];
+     console.log(this.turnosDoCombate)
   }
 
   public getAcaoPersonagem(): Acao {
+    console.log(this.products)
     const acao = new Acao(this.habilidadeSelecionada, this.transformaPersonagemLog(this.personagemSelecionado.personagem), this.transformaPersonagemLog(this.alvoSelecionado.personagem), this.danoCausado);
     return acao;
   }
@@ -93,6 +113,9 @@ export class GenrenciarCombateComponent implements OnInit {
     if(this.indexPersonagemSelecionado >= this.products.length) {
       this.indexPersonagemSelecionado = 0;
       this.trocarTurno();
+    }
+    if(this.products.length == 1) {
+      this.personagemSelecionado  = this.products[0]
     } 
     this.personagemSelecionado  = this.products[this.indexPersonagemSelecionado]
   }
@@ -101,6 +124,7 @@ export class GenrenciarCombateComponent implements OnInit {
     this.logDoCombate.resumoCombate = this.turnosDoCombate;
     this.combateService.atualizarCombate(this.sqCombateSelecionado, this.logDoCombate).subscribe(() => {
       alert('Combate atualizado com sucesso!')
+      this.location.back();
     })
   }
 
@@ -114,7 +138,7 @@ export class GenrenciarCombateComponent implements OnInit {
     this.displayModal = true;
   }
 
-  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private combateService: CombateService, private location: Location) { 
+  constructor(private route: ActivatedRoute, private combateService: CombateService, private location: Location) { 
     
   }
 

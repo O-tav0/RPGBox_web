@@ -1,7 +1,7 @@
 import { PersonagemDTO } from "./PersonagemDTO.model";
 
 export class PersonagemCombateDTO {
-    public personagem: PersonagemDTO;
+    public personagem: any;
     public nrOrdemCombate: number; 
     
 

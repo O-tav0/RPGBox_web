@@ -70,9 +70,9 @@
                     <div class="col md12 fonteBranca">
                         <div class="alinhamento">
                             <div class="tamanhoPersonagens item">
-                                <img src="data:image/jpeg;base64,{{personagemSelecionado.personagem.imagemPersonagem}}"
+                                <img src="data:image/jpeg;base64,{{personagemSelecionado!.personagem.imagemPersonagem}}"
                                     width="120" height="120" class="shadow-2" class="imagemPersonagensCombate"
-                                    pTooltip="{{personagemSelecionado.personagem.pontosDeVida}}" />
+                                    pTooltip="{{!personagemSelecionado.personagem.pontosDeVida}}/{{personagemSelecionado.personagem.pontosVidaAtual}}" />
                                 <span class="car-buttons mt-5 nomePersonagem">
                                     {{personagemSelecionado.personagem.nomePersonagem}}
                                 </span>
@@ -174,8 +174,9 @@
                 <h5 class="modalTurnos"> Turno {{log.numeroTurno}} </h5> <br />
 
                 <div class="containerPersonagensDoTurno" *ngFor="let acao of log.acoesDoTurno">
+                    <br />
                     <div class="row">
-                        <div class="col md5">
+                        <div class="col md5 primeiroNomePersonagemLog">
 
                             <p> {{acao!.personagemQueUtilizou.nomePersonagem}} </p>
                         </div>
@@ -184,43 +185,57 @@
                             <img src="../assets/LoginIcon.png" width="50px" height="50px">
                         </div>
 
-                        <div class="col md5">
+                        <div class="col md5 segundoNomePersonagemLog">
                             <p> {{acao!.personagemAlvo.nomePersonagem}} </p>
                         </div>
 
                     </div>
 
-                    <div class="row">
-                        <div class="col md12 habilidadeUtilizada">
-                            <p> Habilidade: {{acao!.habilidadeUtilizada.nomeHabilidade}} </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="containerDescricaoHabilidadeModal">
-                            <p-scrollPanel [style]="{width: '230px', height: '40px'}">
-                                <label class="fonteDescricaoHabilidade">
-                                    {{acao!.habilidadeUtilizada.descricaoHabilidade}}
-                                </label>
-                            </p-scrollPanel>
+                    <div class="containerHabilidadesLog">
+                        <div class="row">
+                            <div class="col md12 habilidadeUtilizada">
+                                <p> Habilidade: {{acao!.habilidadeUtilizada.nomeHabilidade}} </p>
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="containerDano">
-                            <div class="row">
-                                <div class="col md12">
-                                    Dano causado
+                            <div class="containerDescricaoHabilidadeModal">
+                                <div class="col md6">
+                                    <p-scrollPanel [style]="{width: '230px', height: '40px'}">
+                                        <label class="fonteDescricaoHabilidade">
+                                            {{acao!.habilidadeUtilizada.descricaoHabilidade}}
+                                        </label>
+                                    </p-scrollPanel>
                                 </div>
                             </div>
-                            <div class=row>
-                                <p class="danoCausadoModal"> {{acao!.danoCausado}} </p>
+
+                            <!-- <div class="containerDescricaoHabilidadeModal">
+                                <p-scrollPanel [style]="{width: '230px', height: '40px'}">
+                                    <label class="fonteDescricaoHabilidade">
+                                        {{acao!.habilidadeUtilizada.descricaoHabilidade}}
+                                    </label>
+                                </p-scrollPanel>
+                            </div> -->
+
+                        </div>
+                        <div class="row">
+
+                            <div class="containerDano">
+                                <div class="row">
+                                    <div class="col md12">
+                                        Dano causado
+                                    </div>
+                                </div>
+                                <div class=row>
+                                    <p class="danoCausadoModal"> {{acao!.danoCausado}} </p>
+                                </div>
                             </div>
                         </div>
+                        <div class="divisaoAcoes">
+
+                        </div>
                     </div>
-                    <hr>
                 </div>
             </div>
         </div>
