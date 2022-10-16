@@ -6,6 +6,7 @@ import { CombateDTO } from '../models/CombateDTO.model';
 import { CombateLog } from '../models/CombateLog.model';
 import { CombateVO, PersonagemCombateVO } from '../models/CombateVO.model';
 import { PersonagemDTO } from '../models/PersonagemDTO.model';
+import { Turno } from '../models/Turno.model';
 import { CampanhaService } from '../service/Campanha.service';
 import { CombateService } from '../service/Combate.service';
 import { PersonagemService } from '../service/Personagem.service';
@@ -27,6 +28,10 @@ export class CombatesCampanhaComponent implements OnInit {
   public displayLabel: boolean = false;
 
   public combatesCampanha: CombateDTO[] = [];
+
+  public displayModalLog: boolean = false;
+
+  public turnosDoCombate: Turno[];
 
   public formCadastroCombate: FormGroup = new FormGroup({
     tituloCombate: new FormControl(),
@@ -76,6 +81,7 @@ export class CombatesCampanhaComponent implements OnInit {
   public carregarCombatesDaCampanha(): void {
     this.campanhaService.buscarCombatesDaCampanha(this.sqCampanhaSelecionada).subscribe((response) => {
       this.combatesCampanha = response;
+      console.log(this.combatesCampanha)
     })
     
   }
@@ -84,6 +90,13 @@ export class CombatesCampanhaComponent implements OnInit {
     if (confirm("Deseja iniciar o combate ? Uma vez iniciado, precisa ser finalizado!") == true) {
       this.roteador.navigate([`/combate/${sqCombate}/gerenciar`])
     } 
+  }
+
+  public mostrarModalLog(resumoCombate: any): void {
+    this.turnosDoCombate = resumoCombate;
+    console.log(this.turnosDoCombate)
+    console.table(this.turnosDoCombate)
+    this.displayModalLog = true;
   }
 
   constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private CombateService: CombateService, private roteador: Router) { }

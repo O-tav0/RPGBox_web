@@ -49,7 +49,8 @@
                                 <div *ngIf="combate.statusCombate == 'Finalizado' ">
                                     <label class="labelStatus fonteBranca"> {{combate.statusCombate}} </label>
 
-                                    <label pTooltip="Logs do Combate" class="fonteBranca iconesLog right">
+                                    <label pTooltip="Logs do Combate" class="fonteBranca iconesLog right"
+                                        (click)="mostrarModalLog(combate.resumoCombate.resumoCombate)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
                                             <path
@@ -133,6 +134,84 @@
         </div>
 
     </div>
+
+    <p-dialog header="Logs do Combate" [(visible)]="displayModalLog" [modal]="true" [style]="{width: '50vw'}"
+        [draggable]="false" [resizable]="false">
+        <p class="m-0">
+
+        <div>
+            <div class="containerTurno" *ngFor="let log of turnosDoCombate">
+                <h5 class="modalTurnos"> Turno {{log.numeroTurno}} </h5> <br />
+
+                <div class="containerPersonagensDoTurno" *ngFor="let acao of log.acoesDoTurno">
+                    <br />
+                    <div class="row">
+                        <div class="col md5 primeiroNomePersonagemLog">
+
+                            <p> {{acao!.personagemQueUtilizou.nomePersonagem}} </p>
+                        </div>
+
+                        <div class="col md2">
+                            <img src="../assets/LoginIcon.png" width="50px" height="50px">
+                        </div>
+
+                        <div class="col md5 segundoNomePersonagemLog">
+                            <p> {{acao!.personagemAlvo.nomePersonagem}} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="containerHabilidadesLog">
+                        <div class="row">
+                            <div class="col md12 habilidadeUtilizada">
+                                <p> Habilidade: {{acao!.habilidadeUtilizada.nomeHabilidade}} </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="containerDescricaoHabilidadeModal">
+                                <div class="col md6">
+                                    <p-scrollPanel [style]="{width: '230px', height: '40px'}">
+                                        <label class="fonteDescricaoHabilidade">
+                                            {{acao!.habilidadeUtilizada.descricaoHabilidade}}
+                                        </label>
+                                    </p-scrollPanel>
+                                </div>
+                            </div>
+
+                            <!-- <div class="containerDescricaoHabilidadeModal">
+                                <p-scrollPanel [style]="{width: '230px', height: '40px'}">
+                                    <label class="fonteDescricaoHabilidade">
+                                        {{acao!.habilidadeUtilizada.descricaoHabilidade}}
+                                    </label>
+                                </p-scrollPanel>
+                            </div> -->
+
+                        </div>
+                        <div class="row">
+
+                            <div class="containerDano">
+                                <div class="row">
+                                    <div class="col md12">
+                                        Dano causado
+                                    </div>
+                                </div>
+                                <div class=row>
+                                    <p class="danoCausadoModal"> {{acao!.danoCausado}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divisaoAcoes">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </p-dialog>
 
 
 </div>
