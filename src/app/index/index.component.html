@@ -8,10 +8,10 @@
             <h3 class="corFonte"> Minhas Campanhas </h3> <br />
         </div>
         <div class="row">
-            <div class="col l3 m6 espacamento" *ngFor="let campanha of listaDeCampanhas | async">
+            <div class="col l3 m6 espacamento" *ngFor="let campanha of listaDeCampanhas">
                 <div class="card corCard">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" width="300" height="200">
+                        <img [src]="campanha.imagemCampanha" width="300" height="200">
                     </div>
                     <div class="card-content">
                         <span class="card-title corFonte tamanhoTituloCampanha"> {{campanha.tituloCampanha}}

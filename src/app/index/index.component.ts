@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CampanhaVO } from '../models/CampanhaVO.model';
 import { Route, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-index',
@@ -14,7 +15,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./index.component.css'],
 })
 export class IndexComponent implements OnInit {
-  public listaDeCampanhas: Observable<CampanhaDTO[]>;
+  public listaDeCampanhas: CampanhaDTO[];
   public display: boolean;
   public image: File | null = null;
   public imagemCampanha: any = null;
@@ -27,9 +28,13 @@ export class IndexComponent implements OnInit {
 
   private buscarCampanhasDoUsuario() {
     this.emailUsuarioLogado = this.firebaseService.recuperaEmailUsuarioLogado();
-    this.listaDeCampanhas = this.campanhaService.buscarCampanhasPorEmailUsuario(
-      this.emailUsuarioLogado
-    );
+    this.campanhaService.buscarCampanhasPorEmailUsuario(this.emailUsuarioLogado).subscribe((response) => {
+      this.listaDeCampanhas = response
+
+      this.listaDeCampanhas.forEach((obj) => {
+        obj.imagemCampanha = 'data:image/jpeg;base64,' + obj.imagemCampanha;
+      })
+    })
   }
 
   public selecionarCampanha(sqCampanha: number): void {
@@ -48,11 +53,11 @@ export class IndexComponent implements OnInit {
     console.log(this.imagemCampanha);
     let novaCampanha = new CampanhaVO(
       this.formCadastroCampanha.value.titulo,
-      this.imagemCampanha.substring(22, this.imagemCampanha.length - 1),
+      this.imagemCampanha.split(',')[1],
       this.formCadastroCampanha.value.descricao,
       this.emailUsuarioLogado
     );
-
+    
     this.campanhaService.cadastrarCampanha(novaCampanha).subscribe(() => {
       alert('Campanha cadastrada com sucesso!');
       this.display = false;
@@ -73,12 +78,14 @@ export class IndexComponent implements OnInit {
 
     promise.then((img) => {
       comp.imagemCampanha = img;
+      console.log(comp.imagemCampanha)
     });
   }
 
   constructor(
     private campanhaService: CampanhaService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {

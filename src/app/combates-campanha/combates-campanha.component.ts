@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { CombateDTO } from '../models/CombateDTO.model';
+import { CombateLog } from '../models/CombateLog.model';
 import { CombateVO, PersonagemCombateVO } from '../models/CombateVO.model';
 import { PersonagemDTO } from '../models/PersonagemDTO.model';
 import { CampanhaService } from '../service/Campanha.service';
