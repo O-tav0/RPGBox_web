@@ -17,9 +17,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class IndexComponent implements OnInit {
   public listaDeCampanhas: CampanhaDTO[];
   public display: boolean;
+  public displayAlterarModal: boolean;
   public image: File | null = null;
   public imagemCampanha: any = null;
+  public imagemCampanhaAtualizar: any = null;
   public emailUsuarioLogado: string;
+  public titulo: string;
+  public descricao: string;
+  public campanhaSelecionada :CampanhaDTO; 
 
   public formCadastroCampanha: FormGroup = new FormGroup({
     titulo: new FormControl(),
@@ -49,6 +54,15 @@ export class IndexComponent implements OnInit {
     this.display = true;
   }
 
+  public mostrarModalAlterarCampanha(campanhaSelecionado: CampanhaDTO) {
+    this.displayAlterarModal = true;
+    this.campanhaSelecionada = campanhaSelecionado;
+
+    this.descricao = this.campanhaSelecionada.descricaoCampanha
+    this.titulo = this.campanhaSelecionada.tituloCampanha
+    this.imagemCampanhaAtualizar = this.campanhaSelecionada.imagemCampanha
+  }
+
   public cadastrarCampanha(): void {
     console.log(this.imagemCampanha);
     let novaCampanha = new CampanhaVO(
@@ -61,6 +75,7 @@ export class IndexComponent implements OnInit {
     this.campanhaService.cadastrarCampanha(novaCampanha).subscribe(() => {
       alert('Campanha cadastrada com sucesso!');
       this.display = false;
+      this.imagemCampanha = null;
       this.ngOnInit();
     });
   }
@@ -78,14 +93,55 @@ export class IndexComponent implements OnInit {
 
     promise.then((img) => {
       comp.imagemCampanha = img;
-      console.log(comp.imagemCampanha)
+    });
+  }
+
+  public tratarImagemSelecionadaParaAtualizar(files: FileList): void {
+    const comp = this;
+    const arquivo = files.item(0);
+    const promise = new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(arquivo!);
+    });
+
+    promise.then((img) => {
+      comp.imagemCampanhaAtualizar = img;
+    });
+  }
+
+  public excluirCampanha(sqCampanha: number): void {
+    if (confirm("Deseja deletar a campanha ?") == true) {
+      this.campanhaService.deletarCampanha(sqCampanha).subscribe((response) => {
+        alert(response)
+        this.buscarCampanhasDoUsuario()
+      })
+    }
+  }
+
+  public alterarCampanha(): void {
+    let novaCampanha = new CampanhaVO(
+      this.titulo,
+      this.imagemCampanhaAtualizar.split(',')[1],
+      this.descricao,
+      this.emailUsuarioLogado
+    );
+
+    this.campanhaService.alterarCampanha(novaCampanha, this.campanhaSelecionada.sqCampanha).subscribe(() => {
+      alert('Campanha alterada com sucesso!');
+      this.displayAlterarModal = false;
+      this.imagemCampanhaAtualizar = null;
+      this.titulo = "",
+      this.descricao = "";
+      this.ngOnInit();
     });
   }
 
   constructor(
     private campanhaService: CampanhaService,
     private firebaseService: FirebaseService,
-    private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {

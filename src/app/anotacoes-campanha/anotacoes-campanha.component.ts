@@ -15,6 +15,10 @@ export class AnotacoesCampanhaComponent implements OnInit {
 
   public displayFormulario: boolean = false;
   public displayLabel: boolean = false;
+  public anotacaoSelecionada: AnotacaoDTO;
+  public descricao: string;
+  public tituloForm: string;
+  public tipoOperacao: number;
 
   public listaDeAnotacoes: AnotacaoDTO[] = [];
 
@@ -39,18 +43,44 @@ export class AnotacoesCampanhaComponent implements OnInit {
     }
   }
 
-  public cadastrarAnotacao(): void {
-    const novaAnotacao = new AnotacaoVO(this.sqCampanhaSelecionada, this.formCadastroAnotacao.value.descricao);
+  public enviarAnotacao(): void {
+    const novaAnotacao = new AnotacaoVO(this.sqCampanhaSelecionada, this.descricao);
     
-    this.anotacaoService.cadastrarAnotacao(novaAnotacao).subscribe((resposta) => {
-      alert('Anotação cadastrada com sucesso!')
-      this.carregarAnotacoesDaCampanha();
-    })
+    if(this.tipoOperacao == 1) {
+      this.anotacaoService.cadastrarAnotacao(novaAnotacao).subscribe((resposta) => {
+        alert('Anotação cadastrada com sucesso!')
+        this.carregarAnotacoesDaCampanha();
+      })
+    } else {
+      this.anotacaoService.atualizarAnotacao(this.anotacaoSelecionada.sqAnotacao, novaAnotacao).subscribe((resposta) => {
+        alert('Anotacao atualizada com sucesso!')
+        this.carregarAnotacoesDaCampanha();
+      })
+    }
   }
 
-  public mostrarFormulario(): void {
+  public mostrarFormulario(tipoOperacao: number, anotacao: any): void {
     this.displayFormulario = true;
     this.displayLabel = false;
+    this.tipoOperacao = tipoOperacao;
+
+    if(this.tipoOperacao === 2) {
+      this.anotacaoSelecionada = anotacao
+      this.tituloForm = 'Alterar Anotação';
+      this.descricao = anotacao.descricaoAnotacao
+    } else {
+      this.descricao = '';
+      this.tituloForm = 'Cadastrar Anotação';
+    }
+  }
+
+  public excluirCombate(sqAnotacao: number): void {
+    if (confirm("Deseja deletar a anotação ?") == true) {
+      this.anotacaoService.deletarAnotacao(sqAnotacao).subscribe((response) => {
+        alert(response)
+        this.carregarAnotacoesDaCampanha();
+      })
+    }
   }
 
   constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private anotacaoService: AnotacaoService) { }

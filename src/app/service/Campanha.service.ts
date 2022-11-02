@@ -62,7 +62,8 @@ export class CampanhaService {
   }
   
   public buscarCombatesDaCampanha(sqCampanha: number): Observable<CombateDTO[]> {
-    return this.http.get<any>(`http://localhost:8080/campanha/combates/${sqCampanha}`).pipe(map((resposta: any) => resposta.objetoResposta));
+    return this.http.get<any>(`http://localhost:8080/campanha/combates/${sqCampanha}`)
+    .pipe(map((resposta: any) => resposta.objetoResposta));
   }
 
   public buscarAnotacoesDaCampanha(
@@ -73,5 +74,16 @@ export class CampanhaService {
       .pipe(map((resposta: any) => resposta.objetoResposta));
   }
 
+  public deletarCampanha(sqCampanha: number): Observable<String> {
+    return this.http.delete<any>(`http://localhost:8080/campanha/${sqCampanha}/deletar`).pipe(map((resposta: RespostaDTO) => resposta.mensagem))
+  }
+
+  public alterarCampanha(novaCampanha: CampanhaVO, sqCampanha: number): Observable<any> {
+    return this.http.put<any>(
+      `http://localhost:8080/campanha/${sqCampanha}/atualizar`,
+      novaCampanha
+    );
+  }
+  
   constructor(private http: HttpClient) {}
 }

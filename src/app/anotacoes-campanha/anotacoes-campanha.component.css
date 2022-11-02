@@ -186,3 +186,11 @@ body {
 :host ::ng-deep .p-inputtext {
     background: #323232;
 }
+
+.iconesEdicao:hover {
+    cursor: pointer;
+}
+
+.iconesLog:hover {
+    cursor: pointer;
+}

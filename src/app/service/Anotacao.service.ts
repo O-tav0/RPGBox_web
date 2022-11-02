@@ -24,5 +24,17 @@ export class AnotacaoService {
     );
   }
 
+  public deletarAnotacao(sqAnotacao: number): Observable<String> {
+    return this.http.delete<any>(`http://localhost:8080/anotacao/${sqAnotacao}/deletar`).pipe(map((resposta: RespostaDTO) => resposta.mensagem))
+  }
+
+  public atualizarAnotacao(sqAnotacao: number, anotacaoAtualizada: AnotacaoVO): Observable<any> {
+    
+    return this.http.put<any>(
+    `http://localhost:8080/anotacao/${sqAnotacao}/alterar`,
+    anotacaoAtualizada
+    );
+  }
+
   constructor(private http: HttpClient) {}
 }

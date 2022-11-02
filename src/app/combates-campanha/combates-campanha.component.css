@@ -252,3 +252,11 @@ body {
 .containerHabilidadesLog {
     margin-left: 130px;
 }
+
+.iconesEdicao:hover {
+    cursor: pointer;
+}
+
+.iconesLog:hover {
+    cursor: pointer;
+}

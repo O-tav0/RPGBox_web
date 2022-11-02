@@ -41,7 +41,7 @@ export class CombatesCampanhaComponent implements OnInit {
     const personagens = this.preencherObjetoPersonagensSelecionados();
     const novoCombate = new CombateVO(this.sqCampanhaSelecionada, this.formCadastroCombate.value.tituloCombate, personagens); 
 
-    this.CombateService.cadastrarCombnate(novoCombate).subscribe(() => {
+    this.combateService.cadastrarCombnate(novoCombate).subscribe(() => {
       alert('Combate cadastro com sucesso!')
       this.carregarCombatesDaCampanha();
     })
@@ -99,7 +99,16 @@ export class CombatesCampanhaComponent implements OnInit {
     this.displayModalLog = true;
   }
 
-  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private CombateService: CombateService, private roteador: Router) { }
+  public excluirCombate(sqCombate: number): void {
+    if (confirm("Deseja deletar o combate ?") == true) {
+      this.combateService.deletarCombate(sqCombate).subscribe((response) => {
+        alert(response)
+        this.carregarCombatesDaCampanha();
+      })
+    }
+  }
+
+  constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private combateService: CombateService, private roteador: Router) { }
 
   ngOnInit(): void {
     this.carregarPersonagensDaCampanha();

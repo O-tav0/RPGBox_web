@@ -14,12 +14,35 @@
                 <p-accordion [multiple]="true">
                     <p-accordionTab header="Aventureiros" styleClass="tamanhoFonte corFonte"
                         (click)="esconderCadastro()">
+                        <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+                        <!-- <p-table [value]="aventureiros" [(contextMenuSelection)]="personagemSelecionado"
+                            [contextMenu]="cm" dataKey="sqPersonagem" responsiveLayout="scroll">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-product>
+                                <tr [pContextMenuRow]="product">
+                                    <td>{{product.code}}</td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.category}}</td>
+                                    <td>{{product.price | currency: 'USD'}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table> -->
+
                         <div class="row">
                             <div class="col md4 alinhamento espacamento" *ngFor="let aventureiro of aventureiros">
                                 <div class="item">
-                                    <img src="data:image/jpeg;base64,{{aventureiro.imagemPersonagem}}" width="150"
-                                        class="imagemPersonagens" />
-                                    <span class="caption">{{aventureiro.nomePersonagem}}</span>
+                                    <img #imgAventureiros src="data:image/jpeg;base64,{{aventureiro.imagemPersonagem}}"
+                                        width="150" class="imagemPersonagens" />
+                                    <span class="caption">{{aventureiro.nomePersonagem}} </span>
+                                    <p-contextMenu [target]="imgAventureiros" #cm [model]="items"></p-contextMenu>
                                 </div>
                             </div>
                         </div>

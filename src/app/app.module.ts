@@ -39,6 +39,12 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { GenrenciarCombateComponent } from './genrenciar-combate/genrenciar-combate.component';
+import { RolagemDadosComponent } from './rolagem-dados/rolagem-dados.component';
+import {RippleModule} from 'primeng/ripple';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ContextMenuModule} from 'primeng/contextmenu';
+
+
 
 
 
@@ -58,6 +64,7 @@ import { GenrenciarCombateComponent } from './genrenciar-combate/genrenciar-comb
     CombatesCampanhaComponent,
     HistoricoCampanhaComponent,
     GenrenciarCombateComponent,
+    RolagemDadosComponent,
     
   ],
   imports: [
@@ -85,7 +92,11 @@ import { GenrenciarCombateComponent } from './genrenciar-combate/genrenciar-comb
     InputTextModule,
     OverlayPanelModule,
     TooltipModule,
-    InputTextareaModule
+    InputTextareaModule,
+    RippleModule,
+    ToolbarModule,
+    ContextMenuModule
+    
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

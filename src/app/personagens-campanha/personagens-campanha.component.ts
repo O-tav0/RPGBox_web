@@ -11,6 +11,7 @@ import { HabilidadePersonagem } from '../models/HabilidadePersonagem.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PersonagemService } from '../service/Personagem.service';
 import { PersonagemVO } from '../models/PersonagemVO.model';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-personagens-campanha',
@@ -22,6 +23,8 @@ export class PersonagensCampanhaComponent implements OnInit {
   public aventureiros: PersonagemDTO[];
   public npcs: PersonagemDTO[];
   public inimigos: PersonagemDTO[];
+
+  public personagemSelecionado: PersonagemDTO;
 
   public tiposDePersonagens: TipoPersonagem[];
   public tipoSelecionado: TipoPersonagem;
@@ -36,6 +39,8 @@ export class PersonagensCampanhaComponent implements OnInit {
 
   public image: File | null = null;
   public imagemPersonagem: any = null;
+  
+  public items: MenuItem[];
 
   public formCadastroPersonagem: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -129,6 +134,14 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.display = true;
   }
 
+  public excluirPersonagem(): void {
+    console.log("Função de excluir")
+  }
+
+  public alterarPersonagem(): void {
+    console.log("Função de alterar")
+  }
+
   constructor(private campanhaService: CampanhaService,
      private route: ActivatedRoute,
      private personagemService: PersonagemService
@@ -153,5 +166,18 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.recuperaPersonagensDaCampanha();
     this.tipoSelecionado = {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO}
     this.tipoHabilidadeSelecionado = {nome: 'Ataque', valor: TipoDeHabilidadeEnum.ATAQUE}
+
+    this.items = [
+      {
+          icon:'pi pi-fw pi-pencil',
+          label: 'Editar',
+          command: () => this.alterarPersonagem()
+      },
+      {
+          icon:'pi pi-fw pi-trash',
+          label: 'Deletar',
+          command: () => this.excluirPersonagem()
+      }
+  ];
   }
 }

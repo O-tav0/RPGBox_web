@@ -5,6 +5,7 @@ import { CombateDTO } from '../models/CombateDTO.model';
 import { CombateVO } from '../models/CombateVO.model';
 import { map } from 'rxjs/operators';
 import { CombateLog } from '../models/CombateLog.model';
+import { RespostaDTO } from '../models/RespostaDTO.model';
 
 @Injectable({
     providedIn: 'root',
@@ -33,7 +34,11 @@ public buscarCombate(
     `http://localhost:8080/combates/${sqCombate}/finalizar`,
     resumoCombate
     );
-  }    
+  }
+  
+  public deletarCombate(sqCombate: number): Observable<String> {
+    return this.http.delete<any>(`http://localhost:8080/combates/${sqCombate}/deletar`).pipe(map((resposta: RespostaDTO) => resposta.mensagem))
+  }
 
     constructor(private http: HttpClient) {}
   }
