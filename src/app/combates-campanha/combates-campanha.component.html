@@ -18,7 +18,8 @@
                                 <label class="fonteBranca"> Criado em: </label>
                                 <p class="fonteBranca"> {{combate.dtCombate}} </p> <br /> <br />
                                 <p class="fonteBranca tituloCombate"> {{combate.tituloCombate}}
-                                    <label class="right iconesEdicao" pTooltip="Editar Combate">
+                                    <label class="right iconesEdicao" pTooltip="Editar Combate"
+                                        (click)="mostrarFormularioAlteracao(combate)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                             <path
@@ -84,7 +85,7 @@
         <div class="formularioCadastro">
             <div class="row">
                 <div clas="col md10">
-                    <h4 class="posicionamentoLabelCadastro"> Cadastro de combate </h4>
+                    <h4 class="posicionamentoLabelCadastro"> {{tituloTela}} </h4>
                 </div>
             </div>
             <div class="row">
@@ -214,5 +215,67 @@
 
     </p-dialog>
 
+    <!-- Alteração de combate -->
 
+    <div class="containerForm" *ngIf="displayFormularioAlteracao == true">
+        <div class="formularioCadastro">
+            <div class="row">
+                <div clas="col md10">
+                    <h4 class="posicionamentoLabelCadastro"> {{tituloTela}} </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col md 12">
+                    <form>
+                        <label for="float-input">Título do Combate</label>
+                        <input id="float-input" type="text" pInputText [(ngModel)]="tituloCombateAtualizar"
+                            [ngModelOptions]="{standalone: true}">
+                        <div class="input-field tamanhoForm">
+                            <!-- <input id="#nome" type="text" [(ngModel)]="tituloCombateAtualizar"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="nome"> Título do combate </label> -->
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col md12">
+                    <p-pickList [source]="personagensDaCampanhaDisponiveis" [target]="personagensDoCombate"
+                        sourceHeader="Personagens Disponíveis" targetHeader="Personagens no combate" [dragdrop]="true"
+                        [responsive]="true" [sourceStyle]="{'height':'30rem'}" [targetStyle]="{'height':'30rem'}"
+                        filterBy="name" sourceFilterPlaceholder="Search by name"
+                        targetFilterPlaceholder="Search by name">
+                        <ng-template let-product pTemplate="item">
+
+                            <div class="product-item">
+                                <div class="product-list-detail">
+                                    <div class="col md6">
+                                        <img src="data:image/jpeg;base64,{{product.imagemPersonagem}}" width="60"
+                                            height="60" class="shadow-2" class="imagemPersonagens bloco espacamento" />
+                                    </div>
+                                    <h5 class="mb-2">{{product.nomePersonagem}}</h5>
+                                </div>
+
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <button class=" btn waves-effect waves-light red botaoDetalhes" type="button"
+                    (click)="atualizarCombate()">
+                    Atualizar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    </div>
 </div>
