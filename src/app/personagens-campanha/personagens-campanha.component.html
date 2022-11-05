@@ -9,38 +9,18 @@
         </div>
         <div class="posicionamentoListaPersonagens col-5 bloco">
 
-            <h4 class="corFonte"> Personagens de NomeCampanha </h4>
+            <h4 class="corFonte"> Personagens da Campanha </h4>
             <div class="espacamentoAccordion">
                 <p-accordion [multiple]="true">
                     <p-accordionTab header="Aventureiros" styleClass="tamanhoFonte corFonte"
                         (click)="esconderCadastro()">
-                        <p-contextMenu #cm [model]="items"></p-contextMenu>
-
-                        <!-- <p-table [value]="aventureiros" [(contextMenuSelection)]="personagemSelecionado"
-                            [contextMenu]="cm" dataKey="sqPersonagem" responsiveLayout="scroll">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-product>
-                                <tr [pContextMenuRow]="product">
-                                    <td>{{product.code}}</td>
-                                    <td>{{product.name}}</td>
-                                    <td>{{product.category}}</td>
-                                    <td>{{product.price | currency: 'USD'}}</td>
-                                </tr>
-                            </ng-template>
-                        </p-table> -->
 
                         <div class="row">
                             <div class="col md4 alinhamento espacamento" *ngFor="let aventureiro of aventureiros">
                                 <div class="item">
                                     <img #imgAventureiros src="data:image/jpeg;base64,{{aventureiro.imagemPersonagem}}"
-                                        width="150" class="imagemPersonagens" />
+                                        width="150" class="imagemPersonagens"
+                                        (contextmenu)="selecionarPersonagem(aventureiro)" />
                                     <span class="caption">{{aventureiro.nomePersonagem}} </span>
                                     <p-contextMenu [target]="imgAventureiros" #cm [model]="items"></p-contextMenu>
                                 </div>
@@ -52,9 +32,11 @@
                             <div class="col md4 alinhamento espacamento" *ngFor="let npc of npcs">
 
                                 <div class="item">
-                                    <img src="data:image/jpeg;base64,{{npc.imagemPersonagem}}" width="150"
-                                        class="shadow-2" class="imagemPersonagens" />
+                                    <img #imgNpc src="data:image/jpeg;base64,{{npc.imagemPersonagem}}" width="150"
+                                        class="shadow-2" class="imagemPersonagens"
+                                        (contextmenu)="selecionarPersonagem(npc)" />
                                     <span class="caption">{{npc.nomePersonagem}}</span>
+                                    <p-contextMenu [target]="imgNpc" #cm [model]="items2"></p-contextMenu>
                                 </div>
                             </div>
                         </div>
@@ -64,9 +46,11 @@
                             <div class="col md4 alinhamento espacamento" *ngFor="let inimigo of inimigos">
 
                                 <div class="item" *ngIf=" inimigos.length > 0">
-                                    <img src="data:image/jpeg;base64,{{inimigo.imagemPersonagem}}" width="150"
-                                        class="shadow-2" class="imagemPersonagens " />
+                                    <img #imgInimigo src="data:image/jpeg;base64,{{inimigo.imagemPersonagem}}"
+                                        width="150" class="shadow-2" class="imagemPersonagens "
+                                        (contextmenu)="selecionarPersonagem(inimigo)" />
                                     <span class="caption">{{inimigo.nomePersonagem}}</span>
+                                    <p-contextMenu [target]="imgInimigo" #cm [model]="items3"></p-contextMenu>
                                 </div>
 
                                 <div *ngIf=" inimigos.length == 0">
@@ -199,6 +183,146 @@
                         <ng-template pTemplate="footer">
                             <button class=" btn waves-effect waves-light red botaoDetalhes right"
                                 (click)="adicionarHabilidade()" type="button">
+                                Adicionar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    fill="currentColor" class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                                    <path
+                                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                </svg>
+                            </button>
+                        </ng-template>
+                    </p-dialog>
+                </div>
+            </form>
+        </div>
+
+        <!-- Alterar personagem -->
+
+        <div class="bloco posicionamentoForm" *ngIf="displayAlteracao == true">
+            <form>
+                <div class="row">
+                    <div class="col md6">
+                        <label for="imagemPersonagem" class="label-image"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="25" height="25" fill="currentColor" class="bi bi-person-video"
+                                viewBox="0 0 16 16">
+                                <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                <path
+                                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2Zm10.798 11c-.453-1.27-1.76-3-4.798-3-3.037 0-4.345 1.73-4.798 3H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1.202Z" />
+                            </svg>
+                        </label>
+                        <input id="imagemPersonagem" type="file" accept="image/png image/jpeg" class="input-file"
+                            (change)="tratarImagemSelecionadaAtualizacao()">
+
+                    </div>
+                    <div class=" col md6 informacoesPersonagem">
+                        <div class="input-field">
+                            <input placeholder="Nome do Personagem" id="float-input" type="text" pInputText
+                                [(ngModel)]="nome" [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="input-field">
+                            <input placeholder="Raça do Personagem" id="float-input" type="text" pInputText
+                                [(ngModel)]="raca" [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="input-field">
+                            <input placeholder="Classe do Personagem" id="float-input" type="text" pInputText
+                                [(ngModel)]="classe" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <br />
+                        <div class="selectTipopersonagem">
+                            <p class="corFonte"> Tipo do Personagem </p>
+                            <p-dropdown [options]="tiposDePersonagens" [(ngModel)]="tipoSelecionadoAtualizado"
+                                optionLabel="nome" [ngModelOptions]="{standalone: true}"
+                                styleClass="tiposDePersonagens">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+                <br /> <br /><br />
+                <div class="col md2 vidaENivel">
+                    <div class="input-field">
+                        <input placeholder="Nível do Personagem" id="float-input" type="text" pInputText
+                            [(ngModel)]="nivel" [ngModelOptions]="{standalone: true}">
+
+                    </div>
+
+                    <div class="input-field">
+                        <input placeholder="Vida do Personagem" id="float-input" type="text" pInputText
+                            [(ngModel)]="vida" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <h5 class="corFonte"> Habilidades <div class="right posicaoBotaoAdicionarHabilidade">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-plus" viewBox="0 0 16 16" (click)="
+                                mostrarModalCriarNovaHabilidadeAtualizacao()">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                            </svg>
+                        </div>
+                    </h5>
+
+                    <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+                        <div class="container-habilidade">
+                            <div *ngFor="let hab of habilidadesAtualizadas" class="conteudoHabilidade">
+                                <p-accordion [multiple]="true">
+                                    <p-accordionTab styleClass="corFonte">
+                                        <ng-template pTemplate="header">{{hab.nomeHabilidade}}
+                                        </ng-template>
+                                        <span class="right"> </span>
+                                        <label class="fonte-descricao" (click)="carregarModalHabilidade(hab)">
+                                            {{hab.descricaoHabilidade}} <span class="right">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                                </svg> </span></label>
+                                    </p-accordionTab>
+                                </p-accordion>
+                            </div>
+                        </div>
+
+                    </p-scrollPanel>
+
+                    <br />
+
+                    <button class=" btn waves-effect waves-light red botaoDetalhes right"
+                        (click)="atualizarPersonagem()" type="button">
+                        OK <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+                            <path
+                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                        </svg>
+                    </button>
+
+                    <p-dialog header="Atualizar Habilidades" [(visible)]="displayModalAtualizarHabilidade"
+                        [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+
+                        <div class="input-field corFonte">
+                            <input id="float-input" type="text" pInputText [(ngModel)]="tituloHabilidadeAtt"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="float-input">Título da habilidade</label>
+                        </div>
+
+                        <div class="input-field corFonte">
+                            <input id="float-input" type="text" pInputText [(ngModel)]="descricaoHabilidadeAtt"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="float-input">Descrição da habilidade </label>
+                        </div>
+
+                        <p class="corFonte"> Tipo da Habilidade </p>
+                        <p-dropdown [options]="tiposDeHabilidades" [(ngModel)]="tipoHabilidadeSelecionadoAtualizado"
+                            [ngModelOptions]="{standalone: true}" optionLabel="nome" styleClass="tiposDePersonagens">
+                        </p-dropdown>
+                        <br /> <br /> <br /> <br /> <br />
+                        <ng-template pTemplate="footer">
+                            <button class=" btn waves-effect waves-light red botaoDetalhes right"
+                                (click)="adicionarHabilidadeAtualizada()" type="button">
                                 Adicionar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                     fill="currentColor" class="bi bi-check iconeBotao" viewBox="0 0 16 16">
                                     <path

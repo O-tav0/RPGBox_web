@@ -24,5 +24,17 @@ public cadastrarPersonagem(novoPersonagem: PersonagemVO): Observable<any> {
     );
   }
 
+public deletarPersonagem(sqPersonagem: number): Observable<any> {
+  return this.http.delete<any>(
+    `http://localhost:8080/personagem/${sqPersonagem}/deletar`);
+}
+
+public atualizarPersonagem(novoPersonagem: PersonagemVO, sqPersonagem: number): Observable<any> {
+  return this.http.put<any>(
+    `http://localhost:8080/personagem/${sqPersonagem}/atualizar`,
+    novoPersonagem
+  );
+}
+
   constructor(private http: HttpClient) {}
 }

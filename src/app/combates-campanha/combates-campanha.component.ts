@@ -99,29 +99,12 @@ export class CombatesCampanhaComponent implements OnInit {
     
     this.combateService.buscarPersonagensDoCombate(this.combateSelecionado.sqCombate).subscribe((resposta) => {
       this.personagensDoCombate = resposta
-
-      // this.personagensDaCampanhaDisponiveis = [];
-      // for(let k=0; k<this.personagensDaCampanha.length;k++) {
-      //   let elemento = this.personagensDaCampanha[k];
-      //   this.personagensDaCampanhaDisponiveis.push(elemento) 
-      // }
-      
-      // for(let i=0; i < this.personagensDaCampanhaDisponiveis.length; i++) {
-      //   for(let j=0; j<this.personagensDoCombate.length;j++) {
-      //     let personagemJaEstaNoCombate = this.personagensDaCampanhaDisponiveis[i].sqPersonagem == this.personagensDoCombate[j].sqPersonagem;
-      //     console.log("Comparando sqPersonagem da lista total" + this.personagensDaCampanhaDisponiveis[i].sqPersonagem + "com " + this.personagensDoCombate[j].sqPersonagem +"da lista final " + " resultado: " + personagemJaEstaNoCombate)
-      //     if(personagemJaEstaNoCombate) {
-
-      //       this.personagensDaCampanhaDisponiveis.splice(this.personagensDaCampanhaDisponiveis.findIndex(element => element.sqPersonagem == this.personagensDaCampanhaDisponiveis[i].sqPersonagem),1);
-      //     }
-      //   }
-      // }
     })
 
     this.combateService.buscarPersonagensDisponiveisCombate(this.combateSelecionado.sqCombate).subscribe((resposta) => {
       this.personagensDaCampanhaDisponiveis = resposta
     })
-    
+
     this.tituloCombateAtualizar = this.combateSelecionado.tituloCombate
 
   }
@@ -167,21 +150,7 @@ export class CombatesCampanhaComponent implements OnInit {
       })
     }
   }
-
-  public adicionarPersonagem(event: any):void {
-    let personagemJaEstaNoCombate = this.personagensDoCombate.find((elemento) => elemento.sqPersonagem == event.items[0].sqPersonagem)
-
-    if(personagemJaEstaNoCombate) {
-      alert("Esse personagem já está no combate!")
-    }
-  }
-
-  public teste(personagem: any):void {
-    console.log(personagem);
-    // let personagemJaEstaNoCombate = this.personagensDoCombate.some((elemento) => elemento.sqPersonagem == personagem.sqPersonagem)
-    // return !personagemJaEstaNoCombate;
-  }
-
+  
   constructor(private campanhaService: CampanhaService, private route: ActivatedRoute, private combateService: CombateService, private roteador: Router) { }
 
   ngOnInit(): void {

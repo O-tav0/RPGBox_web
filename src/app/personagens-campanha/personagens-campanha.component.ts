@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PersonagemCampanhaDTO } from '../models/PersonagemCampanhaDTO.model';
@@ -24,23 +24,43 @@ export class PersonagensCampanhaComponent implements OnInit {
   public npcs: PersonagemDTO[];
   public inimigos: PersonagemDTO[];
 
-  public personagemSelecionado: PersonagemDTO;
+  public personagemSelecionado: any;
+  public habilidadeSelecionada:any;
 
   public tiposDePersonagens: TipoPersonagem[];
   public tipoSelecionado: TipoPersonagem;
+  public tipoSelecionadoAtualizado:TipoPersonagem;
 
   public tiposDeHabilidades: TipoHabilidade[];
   public tipoHabilidadeSelecionado: TipoHabilidade;
+  public tipoHabilidadeSelecionadoAtualizado:TipoHabilidade;
 
   public habilidades: HabilidadePersonagem[];
+  public habilidadesAtualizadas: HabilidadePersonagem[] = [];
   public display: boolean;
+  public displayModalAtualizarHabilidade:boolean;
 
   public displayCadastro: boolean;
+  public displayAlteracao: boolean;
 
   public image: File | null = null;
   public imagemPersonagem: any = null;
+
+  public imageAtt: File | null = null;
+  public imagemPersonagemAtt: any = null;
   
   public items: MenuItem[];
+  public items2: MenuItem[];
+  public items3: MenuItem[];
+  public items4: MenuItem[];
+
+  public nome: string;
+  public raca: string;
+  public classe: string;
+  public nivel: number;
+  public vida: number;
+  public tituloHabilidadeAtt: string;
+  public descricaoHabilidadeAtt: string;
 
   public formCadastroPersonagem: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -74,12 +94,35 @@ export class PersonagensCampanhaComponent implements OnInit {
     
   }
 
+  public tratarImagemSelecionadaAtualizacao(): void {
+    
+    let elem: any;
+    elem = $("#imagemPersonagem");
+   
+    const comp = this;
+    const arquivo = elem[0].files[0];
+    const promise = new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(arquivo!);
+    });
+
+    promise.then((img) => {
+      comp.imagemPersonagemAtt = img;
+      alert('Imagem carregada com sucesso');
+    });
+    
+  }
+
   public esconderCadastro(): void {
     this.displayCadastro = false;
     this.formCadastroPersonagem.reset();
   }
 
   public mostrarCadastro(): void {
+    this.displayAlteracao = false;
     this.displayCadastro = true;
   }
 
@@ -100,11 +143,17 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.display = false;
   }
 
+  public adicionarHabilidadeAtualizada() {
+      let novaHabilidade = new HabilidadePersonagem(this.descricaoHabilidadeAtt, this.tituloHabilidadeAtt, this.tipoHabilidadeSelecionadoAtualizado.nome.toUpperCase())
+      this.habilidadesAtualizadas.push(novaHabilidade);
+      this.displayModalAtualizarHabilidade = false;   
+  }
+
   
   public cadastrarPersonagem(): void {
     let img = null
     if(this.imagemPersonagem != null) {
-      img = this.imagemPersonagem.substring(22, this.imagemPersonagem.length - 1)
+      img = this.imagemPersonagem.split(',')[1]
     }
     
     let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
@@ -130,16 +179,85 @@ export class PersonagensCampanhaComponent implements OnInit {
       this.imagemPersonagem = null;
   }
 
+  public atualizarPersonagem(): void {
+    let img = null
+    if(this.imagemPersonagemAtt != null) {
+      img = this.imagemPersonagemAtt.split(',')[1]
+    }
+    
+    let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+
+    let novoPersonagem = new PersonagemVO(this.nome, 
+      this.raca, 
+      this.classe, 
+      sqCampanha,
+      this.vida,
+      img,
+      this.tipoSelecionadoAtualizado.nome.toUpperCase(),
+      this.nivel,
+      this.habilidadesAtualizadas);
+
+      this.personagemService.atualizarPersonagem(novoPersonagem, this.personagemSelecionado.sqPersonagem).subscribe(() => {
+        alert('Personagem atualizado com sucesso!')
+        this.recuperaPersonagensDaCampanha();
+      })
+
+      // this.formCadastroPersonagem.reset();
+      // this.habilidades = [];
+      // this.image = null;
+      // this.imagemPersonagem = null;
+  }
+
+  
+
   public mostrarModalCadastroHabilidade() {
     this.display = true;
   }
 
+  public mostrarModalCadastroHabilidadeAtualizar() {
+    this.displayModalAtualizarHabilidade = true;
+  }
+
   public excluirPersonagem(): void {
-    console.log("Função de excluir")
+    if (confirm("Deseja deletar o personagem ?") == true) {
+      this.personagemService.deletarPersonagem(this.personagemSelecionado.sqPersonagem).subscribe((response) => {
+        alert("Personagem deletado com sucesso!")
+        this.recuperaPersonagensDaCampanha();
+      })
+    }
   }
 
   public alterarPersonagem(): void {
-    console.log("Função de alterar")
+    this.displayCadastro = false;
+    this.displayAlteracao = true;
+    this.classe = this.personagemSelecionado.classePersonagem
+    //this.habilidadesAtualizadas = this.personagemSelecionado.habilidadesPersonagem
+    this.imagemPersonagem = this.personagemSelecionado.imagemPersonagem
+    this.nivel = this.personagemSelecionado.nivelPersonagem
+    this.nome = this.personagemSelecionado.nomePersonagem;
+    this.vida = this.personagemSelecionado.pontosDeVida
+    this.raca = this.personagemSelecionado.racaPersonagem
+    //this.tipoSelecionadoAtualizado = this.personagemSelecionado.tipoPersonagem
+  }
+
+  @HostListener('document:contextmenu', ['$event'])
+  public selecionarPersonagem(personagem: PersonagemDTO) {
+    this.personagemSelecionado = personagem;
+  }
+
+  public mostrarModalCriarNovaHabilidadeAtualizacao(): void {
+    this.tituloHabilidadeAtt = "";
+    this.descricaoHabilidadeAtt = "";
+    this.mostrarModalCadastroHabilidadeAtualizar();
+  }
+
+  public carregarModalHabilidade(habilidade: any) {
+    
+    this.habilidadeSelecionada = habilidade
+    this.tituloHabilidadeAtt = habilidade.nomeHabilidade;
+    this.descricaoHabilidadeAtt = habilidade.descricaoHabilidade;
+    this.tipoHabilidadeSelecionadoAtualizado = habilidade.tipoHabilidade;
+    this.mostrarModalCadastroHabilidadeAtualizar();  
   }
 
   constructor(private campanhaService: CampanhaService,
@@ -165,7 +283,9 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.displayCadastro = false;
     this.recuperaPersonagensDaCampanha();
     this.tipoSelecionado = {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO}
+    this.tipoSelecionadoAtualizado = {nome: 'Aventureiro', valor: TipoDoPersonagemEnum.AVENTUREIRO}
     this.tipoHabilidadeSelecionado = {nome: 'Ataque', valor: TipoDeHabilidadeEnum.ATAQUE}
+    this.tipoHabilidadeSelecionadoAtualizado = {nome: 'Ataque', valor: TipoDeHabilidadeEnum.ATAQUE}
 
     this.items = [
       {
@@ -178,6 +298,40 @@ export class PersonagensCampanhaComponent implements OnInit {
           label: 'Deletar',
           command: () => this.excluirPersonagem()
       }
-  ];
+    ];
+
+    this.items2 = [
+      {
+          icon:'pi pi-fw pi-pencil',
+          label: 'Editar',
+          command: () => this.alterarPersonagem()
+      },
+      {
+          icon:'pi pi-fw pi-trash',
+          label: 'Deletar',
+          command: () => this.excluirPersonagem()
+      }
+    ];
+
+    this.items3 = [
+      {
+          icon:'pi pi-fw pi-pencil',
+          label: 'Editar',
+          command: () => this.alterarPersonagem()
+      },
+      {
+          icon:'pi pi-fw pi-trash',
+          label: 'Deletar',
+          command: () => this.excluirPersonagem()
+      }
+    ];
+
+    this.items4 = [
+      {
+          icon:'pi pi-fw pi-pencil',
+          label: 'Editar',
+          command: () => this.alterarPersonagem()
+      }
+    ];
   }
 }
