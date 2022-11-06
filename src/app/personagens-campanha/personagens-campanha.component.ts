@@ -29,7 +29,7 @@ export class PersonagensCampanhaComponent implements OnInit {
 
   public tiposDePersonagens: TipoPersonagem[];
   public tipoSelecionado: TipoPersonagem;
-  public tipoSelecionadoAtualizado:TipoPersonagem;
+  public tipoSelecionadoAtualizado?:TipoPersonagem;
 
   public tiposDeHabilidades: TipoHabilidade[];
   public tipoHabilidadeSelecionado: TipoHabilidade;
@@ -48,6 +48,7 @@ export class PersonagensCampanhaComponent implements OnInit {
 
   public imageAtt: File | null = null;
   public imagemPersonagemAtt: any = null;
+  public imagemCarregada: any;
   
   public items: MenuItem[];
   public items2: MenuItem[];
@@ -146,10 +147,9 @@ export class PersonagensCampanhaComponent implements OnInit {
   public adicionarHabilidadeAtualizada() {
       let novaHabilidade = new HabilidadePersonagem(this.descricaoHabilidadeAtt, this.tituloHabilidadeAtt, this.tipoHabilidadeSelecionadoAtualizado.nome.toUpperCase())
       this.habilidadesAtualizadas.push(novaHabilidade);
-      this.displayModalAtualizarHabilidade = false;   
+      this.displayModalAtualizarHabilidade = false;
   }
 
-  
   public cadastrarPersonagem(): void {
     let img = null
     if(this.imagemPersonagem != null) {
@@ -183,6 +183,10 @@ export class PersonagensCampanhaComponent implements OnInit {
     let img = null
     if(this.imagemPersonagemAtt != null) {
       img = this.imagemPersonagemAtt.split(',')[1]
+      console.log("dentro do if" + img)
+    } else {
+      img = this.imagemCarregada
+      console.log("dentro do else imagem carregada" + img)
     }
     
     let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
@@ -193,7 +197,7 @@ export class PersonagensCampanhaComponent implements OnInit {
       sqCampanha,
       this.vida,
       img,
-      this.tipoSelecionadoAtualizado.nome.toUpperCase(),
+      this.tipoSelecionadoAtualizado!.nome.toUpperCase(),
       this.nivel,
       this.habilidadesAtualizadas);
 
@@ -202,10 +206,9 @@ export class PersonagensCampanhaComponent implements OnInit {
         this.recuperaPersonagensDaCampanha();
       })
 
-      // this.formCadastroPersonagem.reset();
-      // this.habilidades = [];
-      // this.image = null;
-      // this.imagemPersonagem = null;
+       this.habilidadesAtualizadas = []; 
+       this.imageAtt = null;
+       this.imagemPersonagemAtt = null;
   }
 
   
@@ -230,14 +233,14 @@ export class PersonagensCampanhaComponent implements OnInit {
   public alterarPersonagem(): void {
     this.displayCadastro = false;
     this.displayAlteracao = true;
-    this.classe = this.personagemSelecionado.classePersonagem
-    //this.habilidadesAtualizadas = this.personagemSelecionado.habilidadesPersonagem
-    this.imagemPersonagem = this.personagemSelecionado.imagemPersonagem
+    this.classe = this.personagemSelecionado.classePersonagem    
+    this.imagemCarregada = this.personagemSelecionado.imagemPersonagem
     this.nivel = this.personagemSelecionado.nivelPersonagem
     this.nome = this.personagemSelecionado.nomePersonagem;
     this.vida = this.personagemSelecionado.pontosDeVida
     this.raca = this.personagemSelecionado.racaPersonagem
-    //this.tipoSelecionadoAtualizado = this.personagemSelecionado.tipoPersonagem
+    let tipoDoPersonagemSelecionado = this.tiposDePersonagens.find(o => o.nome == this.personagemSelecionado.tipoPersonagem)
+    this.tipoSelecionadoAtualizado = tipoDoPersonagemSelecionado
   }
 
   @HostListener('document:contextmenu', ['$event'])
