@@ -41,4 +41,142 @@
 
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000" [style]="{width:'30em'}">
     <h5>Rolar Dados</h5>
+    <br /> <br />
+    <div class="containerDados">
+        <div class="row">
+            <div class="col md3">
+                <div class="item-dados" (click)="adicionarDadoNaRolagem('1d4')">
+                    <img src="../assets/d4.png" width="60" heigth="40">
+                    <span class="caption"> d4 </span>
+                </div>
+            </div>
+
+            <div class="col md3">
+                <div class="item-dados" (click)="adicionarDadoNaRolagem('1d6')">
+                    <img src="../assets/d6.png" width="60" heigth="40">
+                    <span class="caption"> d6 </span>
+                </div>
+            </div>
+
+            <div class="col md3">
+                <div class="item-dados" (click)="adicionarDadoNaRolagem('1d8')">
+                    <img src="../assets/d8.png" width="60" heigth="40">
+                    <span class="caption"> d8 </span>
+                </div>
+            </div>
+
+            <div class="col md3">
+                <div class="item-dados" (click)="adicionarDadoNaRolagem('1d10')">
+                    <img src="../assets/d10.png" width="60" heigth="40">
+                    <span class="caption"> d10 </span>
+                </div>
+            </div>
+        </div>
+
+        <div class=row>
+            <div class="segundaLinhaDados">
+                <div class="col md4">
+                    <div class="item-dados" (click)="adicionarDadoNaRolagem('1d12')">
+                        <img src="../assets/d12.png" width="60" heigth="40">
+                        <span class="caption"> d12 </span>
+                    </div>
+                </div>
+
+                <div class="col md4">
+                    <div class="item-dados" (click)="adicionarDadoNaRolagem('1d20')">
+                        <img src="../assets/d20.png" width="60" heigth="40">
+                        <span class="caption"> d20 </span>
+                    </div>
+                </div>
+
+                <div class="col md4">
+                    <div class="item-dados" (click)="adicionarDadoNaRolagem('1d100')">
+                        <img src="../assets/d100.png" width="60" heigth="40">
+                        <span class="caption"> d100 </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <label class="labelRolagem"> Rolagem de: {{qtdD4+"d4, " + qtdD6+"d6, " + qtdD8+"d8, " + qtdD10+"d10, " +
+        qtdD12+"d12, " +
+        qtdD20+"d20, " + qtdD100+"d100 "}}</label> <br /> <br /> <br /> <br />
+    <button class=" btn waves-effect waves-light red botaoDetalhes" type="button" (click)=rolarDados()>
+        Rolar dados <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+            class="bi bi-check iconeBotao" viewBox="0 0 16 16">
+            <path
+                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+        </svg>
+    </button>
+    <hr>
+    <br /> <br />
+    <p-scrollPanel [style]="{width: '28em', height: '300px'}">
+        <p-card header="Rolagens do d4" *ngIf="resultadosD4.length > 0">
+            <div *ngFor="let num of resultadosD4">
+                <label *ngIf="num != 4" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 4" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD4}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d6" *ngIf="resultadosD6.length > 0">
+            <div *ngFor="let num of resultadosD6">
+                <label *ngIf="num != 6" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 6" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD6}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d8" *ngIf="resultadosD8.length > 0">
+            <div *ngFor="let num of resultadosD8">
+                <label *ngIf="num != 8" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 8" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD8}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d10" *ngIf="resultadosD10.length > 0">
+            <div *ngFor="let num of resultadosD10">
+                <label *ngIf="num != 10" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 10" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD10}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d12" *ngIf="resultadosD12.length > 0">
+            <div *ngFor="let num of resultadosD12">
+                <label *ngIf="num != 12" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 12" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD12}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d20" *ngIf="resultadosD20.length > 0">
+            <div *ngFor="let num of resultadosD20">
+                <label *ngIf="num != 20" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 20" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD20}}</label>
+        </p-card>
+
+        <p-card header="Rolagens do d100" *ngIf="resultadosD100.length > 0">
+            <div *ngFor="let num of resultadosD100">
+                <label *ngIf="num != 100" class="resultadosDaJogada"> {{num}} </label>
+                <label *ngIf="num == 100" class="resultadosDaJogada resultadoMaximo"> {{num}} </label>
+            </div> <br />
+            <label class="resultadosDaJogada"> Total: {{totalD100}}</label>
+        </p-card>
+
+    </p-scrollPanel>
+
+    <button class=" btn waves-effect waves-light red botaoDetalhes reiniciar" type="button" (click)=reiniciarJogadas()>
+        Reiniciar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+            class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+            <path
+                d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+        </svg>
+    </button>
+
 </p-sidebar>

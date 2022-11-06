@@ -110,3 +110,55 @@ li>label:hover {
 :host ::ng-deep .p-menuitem-link {
     font-size: 16px;
 }
+
+div.item-dados {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 80px;
+}
+
+.caption {
+    display: block;
+}
+
+.item-dados:hover {
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.segundaLinhaDados {
+    margin-left: 50px;
+}
+
+.botaoDetalhes {
+    background: linear-gradient(to right, #01C5F6 0%, #FD7DFD 100%);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-left: 125px;
+}
+
+.labelRolagem {
+    font-size: 16px;
+}
+
+.labelTituloTotalizador {
+    margin-left: 160px;
+}
+
+.resultadosDaJogada {
+    font-size: 16px;
+    display: inline-block;
+}
+
+.resultadoMaximo {
+    color: #FAFF00;
+}
+
+.reiniciar {
+    margin-left: 140px;
+}
