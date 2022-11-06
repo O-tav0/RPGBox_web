@@ -209,6 +209,7 @@ export class PersonagensCampanhaComponent implements OnInit {
        this.habilidadesAtualizadas = []; 
        this.imageAtt = null;
        this.imagemPersonagemAtt = null;
+       this.displayAlteracao = false;
   }
 
   
