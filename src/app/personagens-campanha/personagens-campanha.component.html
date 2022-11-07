@@ -304,15 +304,13 @@
                         [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
 
                         <div class="input-field corFonte">
-                            <input id="float-input" type="text" pInputText [(ngModel)]="tituloHabilidadeAtt"
-                                [ngModelOptions]="{standalone: true}">
-                            <label for="float-input">Título da habilidade</label>
+                            <input id="float-input" type="text" placeholder="Título da habilidade" pInputText
+                                [(ngModel)]="tituloHabilidadeAtt" [ngModelOptions]="{standalone: true}">
                         </div>
 
                         <div class="input-field corFonte">
-                            <input id="float-input" type="text" pInputText [(ngModel)]="descricaoHabilidadeAtt"
-                                [ngModelOptions]="{standalone: true}">
-                            <label for="float-input">Descrição da habilidade </label>
+                            <input id="float-input" type="text" placeholder="Descrição da habilidade" pInputText
+                                [(ngModel)]="descricaoHabilidadeAtt" [ngModelOptions]="{standalone: true}">
                         </div>
 
                         <p class="corFonte"> Tipo da Habilidade </p>

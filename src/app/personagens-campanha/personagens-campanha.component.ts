@@ -25,7 +25,7 @@ export class PersonagensCampanhaComponent implements OnInit {
   public inimigos: PersonagemDTO[];
 
   public personagemSelecionado: any;
-  public habilidadeSelecionada:any;
+  public habilidadeSelecionada:any = null;
 
   public tiposDePersonagens: TipoPersonagem[];
   public tipoSelecionado: TipoPersonagem;
@@ -33,7 +33,7 @@ export class PersonagensCampanhaComponent implements OnInit {
 
   public tiposDeHabilidades: TipoHabilidade[];
   public tipoHabilidadeSelecionado: TipoHabilidade;
-  public tipoHabilidadeSelecionadoAtualizado:TipoHabilidade;
+  public tipoHabilidadeSelecionadoAtualizado?:TipoHabilidade;
 
   public habilidades: HabilidadePersonagem[];
   public habilidadesAtualizadas: HabilidadePersonagem[] = [];
@@ -145,9 +145,22 @@ export class PersonagensCampanhaComponent implements OnInit {
   }
 
   public adicionarHabilidadeAtualizada() {
-      let novaHabilidade = new HabilidadePersonagem(this.descricaoHabilidadeAtt, this.tituloHabilidadeAtt, this.tipoHabilidadeSelecionadoAtualizado.nome.toUpperCase())
-      this.habilidadesAtualizadas.push(novaHabilidade);
-      this.displayModalAtualizarHabilidade = false;
+      if(this.habilidadeSelecionada != null) {
+        let indexParaAtualizar = this.habilidadesAtualizadas.indexOf(this.habilidadeSelecionada)
+  
+        this.habilidadesAtualizadas[indexParaAtualizar].nomeHabilidade = this.tituloHabilidadeAtt
+        this.habilidadesAtualizadas[indexParaAtualizar].descricaoHabilidade = this.descricaoHabilidadeAtt
+        this.habilidadesAtualizadas[indexParaAtualizar].tipoHabilidade = this.tipoHabilidadeSelecionadoAtualizado!.nome.toUpperCase()
+        this.habilidadeSelecionada = null;
+        this.displayModalAtualizarHabilidade = false;
+
+      }else {
+        let novaHabilidade = new HabilidadePersonagem(this.descricaoHabilidadeAtt, this.tituloHabilidadeAtt, this.tipoHabilidadeSelecionadoAtualizado!.nome.toUpperCase())
+        this.habilidadesAtualizadas.push(novaHabilidade);
+        this.displayModalAtualizarHabilidade = false;
+        this.habilidadeSelecionada = null;
+      }
+      this.habilidadeSelecionada = null;      
   }
 
   public cadastrarPersonagem(): void {
@@ -183,10 +196,8 @@ export class PersonagensCampanhaComponent implements OnInit {
     let img = null
     if(this.imagemPersonagemAtt != null) {
       img = this.imagemPersonagemAtt.split(',')[1]
-      console.log("dentro do if" + img)
     } else {
-      img = this.imagemCarregada
-      console.log("dentro do else imagem carregada" + img)
+      img = this.imagemCarregada 
     }
     
     let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
@@ -201,6 +212,7 @@ export class PersonagensCampanhaComponent implements OnInit {
       this.nivel,
       this.habilidadesAtualizadas);
 
+      console.log(novoPersonagem)
       this.personagemService.atualizarPersonagem(novoPersonagem, this.personagemSelecionado.sqPersonagem).subscribe(() => {
         alert('Personagem atualizado com sucesso!')
         this.recuperaPersonagensDaCampanha();
@@ -234,7 +246,8 @@ export class PersonagensCampanhaComponent implements OnInit {
   public alterarPersonagem(): void {
     this.displayCadastro = false;
     this.displayAlteracao = true;
-    this.classe = this.personagemSelecionado.classePersonagem    
+    this.classe = this.personagemSelecionado.classePersonagem
+    this.habilidadesAtualizadas = this.personagemSelecionado.habilidadesPersonagem    
     this.imagemCarregada = this.personagemSelecionado.imagemPersonagem
     this.nivel = this.personagemSelecionado.nivelPersonagem
     this.nome = this.personagemSelecionado.nomePersonagem;
@@ -260,7 +273,10 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.habilidadeSelecionada = habilidade
     this.tituloHabilidadeAtt = habilidade.nomeHabilidade;
     this.descricaoHabilidadeAtt = habilidade.descricaoHabilidade;
-    this.tipoHabilidadeSelecionadoAtualizado = habilidade.tipoHabilidade;
+    console.log(habilidade.nomeHabilidade)
+    let tipoDaHabilidadeSelecionada = this.tiposDeHabilidades.find(o => o.nome == habilidade.tipoHabilidade)
+    console.log(tipoDaHabilidadeSelecionada)
+    this.tipoHabilidadeSelecionadoAtualizado = tipoDaHabilidadeSelecionada;
     this.mostrarModalCadastroHabilidadeAtualizar();  
   }
 
