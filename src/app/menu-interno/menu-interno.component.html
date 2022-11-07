@@ -112,6 +112,7 @@
     <hr>
     <br /> <br />
     <p-scrollPanel [style]="{width: '28em', height: '300px'}">
+        <br />
         <p-card header="Rolagens do d4" *ngIf="resultadosD4.length > 0">
             <div *ngFor="let num of resultadosD4">
                 <label *ngIf="num != 4" class="resultadosDaJogada"> {{num}} </label>
@@ -120,6 +121,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD4}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d6" *ngIf="resultadosD6.length > 0">
             <div *ngFor="let num of resultadosD6">
                 <label *ngIf="num != 6" class="resultadosDaJogada"> {{num}} </label>
@@ -128,6 +130,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD6}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d8" *ngIf="resultadosD8.length > 0">
             <div *ngFor="let num of resultadosD8">
                 <label *ngIf="num != 8" class="resultadosDaJogada"> {{num}} </label>
@@ -136,6 +139,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD8}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d10" *ngIf="resultadosD10.length > 0">
             <div *ngFor="let num of resultadosD10">
                 <label *ngIf="num != 10" class="resultadosDaJogada"> {{num}} </label>
@@ -144,6 +148,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD10}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d12" *ngIf="resultadosD12.length > 0">
             <div *ngFor="let num of resultadosD12">
                 <label *ngIf="num != 12" class="resultadosDaJogada"> {{num}} </label>
@@ -152,6 +157,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD12}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d20" *ngIf="resultadosD20.length > 0">
             <div *ngFor="let num of resultadosD20">
                 <label *ngIf="num != 20" class="resultadosDaJogada"> {{num}} </label>
@@ -160,6 +166,7 @@
             <label class="resultadosDaJogada"> Total: {{totalD20}}</label>
         </p-card>
 
+        <br />
         <p-card header="Rolagens do d100" *ngIf="resultadosD100.length > 0">
             <div *ngFor="let num of resultadosD100">
                 <label *ngIf="num != 100" class="resultadosDaJogada"> {{num}} </label>
@@ -169,6 +176,8 @@
         </p-card>
 
     </p-scrollPanel>
+
+    <br />
 
     <button class=" btn waves-effect waves-light red botaoDetalhes reiniciar" type="button" (click)=reiniciarJogadas()>
         Reiniciar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
