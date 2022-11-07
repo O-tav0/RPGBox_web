@@ -280,6 +280,10 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.mostrarModalCadastroHabilidadeAtualizar();  
   }
 
+
+  public fecharModalAtualizacao():void {
+    this.habilidadeSelecionada = null;
+  }
   constructor(private campanhaService: CampanhaService,
      private route: ActivatedRoute,
      private personagemService: PersonagemService
