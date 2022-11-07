@@ -156,6 +156,7 @@ export class PersonagensCampanhaComponent implements OnInit {
 
       }else {
         let novaHabilidade = new HabilidadePersonagem(this.descricaoHabilidadeAtt, this.tituloHabilidadeAtt, this.tipoHabilidadeSelecionadoAtualizado!.nome.toUpperCase())
+        console.log(novaHabilidade)
         this.habilidadesAtualizadas.push(novaHabilidade);
         this.displayModalAtualizarHabilidade = false;
         this.habilidadeSelecionada = null;
@@ -201,6 +202,10 @@ export class PersonagensCampanhaComponent implements OnInit {
     }
     
     let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+
+    this.habilidadesAtualizadas.forEach((elem) => {
+      elem.tipoHabilidade = elem.tipoHabilidade.toUpperCase();
+    })
 
     let novoPersonagem = new PersonagemVO(this.nome, 
       this.raca, 
