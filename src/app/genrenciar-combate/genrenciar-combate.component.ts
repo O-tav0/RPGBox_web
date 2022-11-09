@@ -63,7 +63,9 @@ export class GenrenciarCombateComponent implements OnInit {
   public finalizarAcao(): void {
     this.acoesDoTurno.push(this.getAcaoPersonagem());
     this.reduzirVidaPersonagemAlvo();
-    this.trocarPersonagemSelecionado(); 
+    this.trocarPersonagemSelecionado();
+    this.alvoSelecionado = this.products[0]
+    this.habilidadeSelecionada = this.personagemSelecionado.personagem.habilidadesPersonagem[0] 
   }
 
   public reduzirVidaPersonagemAlvo(): void {
@@ -121,6 +123,14 @@ export class GenrenciarCombateComponent implements OnInit {
   }
 
   public gravarLogDoCombate(): void {
+    const ultimoNrTurno = [...this.turnosDoCombate].pop()?.numeroTurno as number;
+    if(this.nrTurno > ultimoNrTurno) {
+     const turnoAtual = new Turno();
+     turnoAtual.numeroTurno = this.nrTurno;
+     turnoAtual.acoesDoTurno = this.acoesDoTurno;
+
+     this.turnosDoCombate.push(turnoAtual)
+    }
     this.logDoCombate.resumoCombate = this.turnosDoCombate;
     this.combateService.atualizarCombate(this.sqCombateSelecionado, this.logDoCombate).subscribe(() => {
       alert('Combate atualizado com sucesso!')
