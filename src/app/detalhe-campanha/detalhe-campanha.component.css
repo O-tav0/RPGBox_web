@@ -1,13 +1,13 @@
 .ordemElementos {
-    float: left;
-  }
-  
+  float: left;
+}
+
 .fundoMenu {
-    background-color:#323232;
-    width: 8%;
-    height: 100vh;
-    align-items: center;
-    display: inline-block;
+  background-color: #323232;
+  width: 8%;
+  height: 100vh;
+  align-items: center;
+  display: inline-block;
 }
 
 .html,
@@ -22,7 +22,7 @@ body {
 }
 
 .corCard {
-  background-color:#323232;
+  background-color: #323232;
   border-radius: 10px;
 }
 
@@ -34,8 +34,8 @@ body {
 
 .label {
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .iconeBotao {
@@ -70,12 +70,10 @@ body {
 }
 
 .sticky {
-  position:fixed;
-  bottom:50px;
+  position: fixed;
+  bottom: 50px;
   right: 100px;
 }
-
-
 
 .img-container .img-to-fit {
   flex: 1;
@@ -89,4 +87,13 @@ body {
   overflow: hidden;
 }
 
+.containerInfoCampanha {
+  width: 80vw;
+  height: 20vh;
+  margin-left: 100px;
+}
 
+.containerInfo {
+  margin-top: 600px;
+  top: 600px;
+}

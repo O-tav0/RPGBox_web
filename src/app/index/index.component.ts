@@ -78,6 +78,11 @@ export class IndexComponent implements OnInit {
       this.imagemCampanha = null;
       this.ngOnInit();
     });
+
+    this.display = false;
+    this.imagemCampanha = null;
+    this.image = null;
+    this.formCadastroCampanha.reset();
   }
 
   public tratarImagemSelecionada(files: FileList): void {

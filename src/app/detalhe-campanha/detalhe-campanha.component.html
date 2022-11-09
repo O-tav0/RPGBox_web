@@ -3,7 +3,31 @@
 </div>
 <div class="html" *ngIf="campanhaSelecionada | async as campanha">
 
-    <div class="containerImagem">
+
+    <div class="containerInfoCampanha center">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" class="img-container .img-to-fit"
+                height="400px" width="1000px">
+        </div>
+    </div> <br /> <br /> <br /> <br /><br /> <br /><br /><br /><br /><br /> <br /> <br /> <br /><br />
+
+    <div class="center corFonte">
+        <h3> {{campanha.tituloCampanha}} </h3> <br />
+
+        <p> {{campanha.descricaoCampanha}} </p>
+    </div>
+
+
+    <!-- <p-card header="{{campanha.tituloCampanha}}">
+        <div>
+            <div class="containerImagem">
+                <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" class="img-container .img-to-fit">
+            </div>
+            <p> {{campanha.descricaoCampanha}} </p>
+        </div> <br />
+    </p-card> -->
+
+    <!-- <div class="containerImagem">
         <img src="data:image/jpeg;base64,{{campanha.imagemCampanha}}" class="img-container .img-to-fit">
     </div>
 
@@ -11,6 +35,6 @@
         <h3> {{campanha.tituloCampanha}} </h3> <br />
 
         <p> {{campanha.descricaoCampanha}} </p>
-    </div>
+    </div> -->
 
 </div>
