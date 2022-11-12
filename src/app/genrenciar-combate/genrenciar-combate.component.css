@@ -209,7 +209,6 @@ div.item {
 }
 
 .containerOrdemCombate {
-    width: 400px;
     position: absolute;
     margin-left: -660px;
     margin-top: 20px;
@@ -305,11 +304,15 @@ div.item {
     border: 2px solid transparent;
     border-image: linear-gradient(to right, #01C5F6, #FD7DFD);
     border-image-slice: 1;
+    width: 353px;
 }
 
 .tabelaPersonagemNoCombate {
-    background-color: #323232;
-    background: #323232;
-    border-bottom: 1px solid #323232;
-    width: 600px;
+    background-color: #4d4d4d;
+    background: #4d4d4d;
+    border-bottom: 1px solid #4d4d4d;
+}
+
+:host ::ng-deep .p-scrollpanel-content {
+    width: 800px;
 }

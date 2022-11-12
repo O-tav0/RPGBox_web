@@ -13,13 +13,20 @@
 
                 <div class="containerOrdemCombate">
                     <table>
-                        <p-scrollPanel [style]="{width: '22em', height: '25rem'}">
-                            <div class="headerTabela">
-                                <tr>
-                                    <td> Ordem Do Combate </td>
-                                </tr>
-                            </div>
+                        <div class="headerTabela">
+                            <tr>
+                                <td> Ordem Do Combate </td>
+                            </tr>
+                        </div>
+                        <p-scrollPanel [style]="{width: '25rem', height: '25rem'}">
                             <tr *ngFor="let personagem of products" class="tabelaPersonagemNoCombate">
+                                <td>
+                                    <div class="col md6">
+                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
+                                            {{products.indexOf(personagem) + 1}}
+                                        </h5>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="col md6">
                                         <img src="data:image/jpeg;base64,{{personagem.personagem.imagemPersonagem}}"
