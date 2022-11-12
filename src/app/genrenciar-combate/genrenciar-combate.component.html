@@ -13,13 +13,13 @@
 
                 <div class="containerOrdemCombate">
                     <table>
-                        <div class="headerTabela">
-                            <tr>
-                                <td> Ordem Do Combate </td>
-                            </tr>
-                        </div>
-                        <p-scrollPanel [style]="{width: '25rem', height: '25rem'}">
-                            <tr *ngFor="let personagem of products" class="tabelaPersonagemNoCombate">
+                        <p-scrollPanel [style]="{width: '22rem', height: '20rem'}">
+                            <div class="headerTabela">
+                                <tr>
+                                    <th> Ordem Do Combate </th>
+                                </tr>
+                            </div>
+                            <tr *ngFor="let personagem of products" class="tabelaPersonagemNoCombate linhaTabela">
                                 <td>
                                     <div class="col md6">
                                         <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
@@ -34,7 +34,7 @@
                                             class="imagemPersonagens bloco espacamento" />
                                     </div>
                                 </td>
-                                <td>
+                                <td class="colunaNome">
                                     <div class="col md2">
                                         <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
                                             {{personagem.personagem.nomePersonagem}}
@@ -44,32 +44,6 @@
                             </tr>
                         </p-scrollPanel>
                     </table>
-                    <!-- <p-pickList [source]="products" sourceHeader="Ordem do Combate"
-                        targetHeader="Personagens no combate" [responsive]="true" [sourceStyle]="{'height':'20rem'}"
-                        [targetStyle]="{'height':'30rem'}" filterBy="name" sourceFilterPlaceholder="Search by name"
-                        targetFilterPlaceholder="Search by name">
-                        <ng-template let-product pTemplate="item">
-                            <div class="product-item">
-                                <div class="product-list-detail">
-                                    <div class="col md4">
-                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
-                                            {{products.indexOf(product) + 1}}
-                                        </h5>
-                                    </div>
-                                    <div class="col md6">
-                                        <img src="data:image/jpeg;base64,{{product.personagem.imagemPersonagem}}"
-                                            width="60" height="60" class="shadow-2"
-                                            class="imagemPersonagens bloco espacamento" />
-                                    </div>
-                                    <div class="col md2">
-                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
-                                            {{product.personagem.nomePersonagem}}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </p-pickList> -->
                 </div>
                 <div class="col md8">
                     <h5> Turno </h5>
@@ -105,8 +79,9 @@
                                 <img src="data:image/jpeg;base64,{{personagemSelecionado!.personagem.imagemPersonagem}}"
                                     width="120" height="120" class="shadow-2" class="imagemPersonagensCombate"
                                     pTooltip="{{personagemSelecionado.personagem.pontosDeVida}}/{{personagemSelecionado.personagem.pontosVidaAtual}}" />
-                                <span class="car-buttons mt-5 nomePersonagem">
-                                    {{personagemSelecionado.personagem.nomePersonagem}}
+                                <span>
+                                    <label class="nomePersonagem"> {{personagemSelecionado.personagem.nomePersonagem}}
+                                    </label>
                                 </span>
                             </div>
                         </div>

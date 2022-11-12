@@ -79,6 +79,11 @@ body {
 
 .nomePersonagem {
     width: 400px;
+    position: absolute;
+    top: 380px;
+    left: 835px;
+    font-size: 16px;
+    color: #fff;
 }
 
 div.item {
@@ -210,7 +215,7 @@ div.item {
 
 .containerOrdemCombate {
     position: absolute;
-    margin-left: -660px;
+    margin-left: -680px;
     margin-top: 20px;
 }
 
@@ -304,7 +309,6 @@ div.item {
     border: 2px solid transparent;
     border-image: linear-gradient(to right, #01C5F6, #FD7DFD);
     border-image-slice: 1;
-    width: 353px;
 }
 
 .tabelaPersonagemNoCombate {
@@ -313,6 +317,17 @@ div.item {
     border-bottom: 1px solid #4d4d4d;
 }
 
-:host ::ng-deep .p-scrollpanel-content {
-    width: 800px;
+.linhaTabela {
+    width: 25rem;
 }
+
+.colunaNome {
+    padding-right: 13px;
+}
+
+/* :host ::ng-deep .p-scrollpanel .p-scrollpanel-bar {
+    background: #4d4d4d;
+    border: 0 none;
+    width: 25px;
+    height: 20rem;
+} */
