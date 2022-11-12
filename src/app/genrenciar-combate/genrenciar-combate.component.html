@@ -12,7 +12,32 @@
             <div class="row">
 
                 <div class="containerOrdemCombate">
-                    <p-pickList [source]="products" sourceHeader="Ordem do Combate"
+                    <table>
+                        <p-scrollPanel [style]="{width: '22em', height: '25rem'}">
+                            <div class="headerTabela">
+                                <tr>
+                                    <td> Ordem Do Combate </td>
+                                </tr>
+                            </div>
+                            <tr *ngFor="let personagem of products" class="tabelaPersonagemNoCombate">
+                                <td>
+                                    <div class="col md6">
+                                        <img src="data:image/jpeg;base64,{{personagem.personagem.imagemPersonagem}}"
+                                            width="60" height="60" class="shadow-2"
+                                            class="imagemPersonagens bloco espacamento" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col md2">
+                                        <h5 class="mb-2 fonteNomePersonagemOrdemCombate">
+                                            {{personagem.personagem.nomePersonagem}}
+                                        </h5>
+                                    </div>
+                                </td>
+                            </tr>
+                        </p-scrollPanel>
+                    </table>
+                    <!-- <p-pickList [source]="products" sourceHeader="Ordem do Combate"
                         targetHeader="Personagens no combate" [responsive]="true" [sourceStyle]="{'height':'20rem'}"
                         [targetStyle]="{'height':'30rem'}" filterBy="name" sourceFilterPlaceholder="Search by name"
                         targetFilterPlaceholder="Search by name">
@@ -37,7 +62,7 @@
                                 </div>
                             </div>
                         </ng-template>
-                    </p-pickList>
+                    </p-pickList> -->
                 </div>
                 <div class="col md8">
                     <h5> Turno </h5>

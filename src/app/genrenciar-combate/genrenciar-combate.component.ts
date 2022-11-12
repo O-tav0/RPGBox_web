@@ -65,19 +65,23 @@ export class GenrenciarCombateComponent implements OnInit {
     this.reduzirVidaPersonagemAlvo();
     this.trocarPersonagemSelecionado();
     this.alvoSelecionado = this.products[0]
-    this.habilidadeSelecionada = this.personagemSelecionado.personagem.habilidadesPersonagem[0] 
+    this.habilidadeSelecionada = this.personagemSelecionado.personagem.habilidadesPersonagem[0]
   }
 
   public reduzirVidaPersonagemAlvo(): void {
     if(this.products.length == 1) {
       alert('Somente um personagem restante no combate. Finalize o combate!')
     } else {
-      this.alvoSelecionado.personagem.pontosVidaAtual = this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado;
-    if(this.alvoSelecionado.personagem.pontosVidaAtual <= 0) {
-      this.products.splice(this.products.indexOf(this.alvoSelecionado), 1);
-      this.products = [...this.products];
+      console.log(this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado <= 0)
+      if((this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado) < 0 || (this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado) == 0) {
+        this.products.splice(this.products.indexOf(this.alvoSelecionado), 1);
+        this.products = [...this.products];
+      } else {
+        this.alvoSelecionado.personagem.pontosVidaAtual = this.alvoSelecionado.personagem.pontosVidaAtual - this.danoCausado;
+        this.products = [...this.products];
+      }
     }
-    }
+    this.products = [...this.products];
   }
 
   public trocarTurno(): void {
@@ -89,7 +93,6 @@ export class GenrenciarCombateComponent implements OnInit {
 
      this.nrTurno++;
      this.acoesDoTurno = [];
-     console.log(this.turnosDoCombate)
   }
 
   public getAcaoPersonagem(): Acao {
