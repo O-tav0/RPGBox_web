@@ -19,7 +19,8 @@
                                 <p class="fonteBranca"> {{combate.dtCombate}} </p> <br /> <br />
                                 <p class="fonteBranca tituloCombate"> {{combate.tituloCombate}}
                                     <label class="right iconesEdicao" pTooltip="Editar Combate"
-                                        (click)="mostrarFormularioAlteracao(combate)">
+                                        (click)="mostrarFormularioAlteracao(combate)"
+                                        *ngIf="combate.statusCombate != 'Finalizado'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                             <path
