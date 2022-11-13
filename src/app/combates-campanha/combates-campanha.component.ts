@@ -80,9 +80,18 @@ export class CombatesCampanhaComponent implements OnInit {
 
   public atualizarCombate(): void {
     const personagens = this.preencherObjetoPersonagensSelecionados(this.personagensDoCombate);
-    const combateAtualizado = new AtualizaCombateVO(this.tituloCombateAtualizar, personagens); 
+    const combateAtualizado = new AtualizaCombateVO(this.tituloCombateAtualizar, personagens);
+    
+    if(personagens.length < 2) {
+      alert("O combate deve ter pelo menos 2 personagens!")
+      return;
+    }
+    
+    if(this.tituloCombateAtualizar == null || this.tituloCombateAtualizar == "") {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
 
-    console.table(personagens)
     this.combateService.atualizarIntegrantesCombate(this.combateSelecionado.sqCombate, combateAtualizado).subscribe(() => {
       alert('Combate atualizado com sucesso!')
       this.carregarCombatesDaCampanha();

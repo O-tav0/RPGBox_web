@@ -65,13 +65,28 @@ export class IndexComponent implements OnInit {
 
   public cadastrarCampanha(): void {
 
-    if(this.isFormularioValido()) {
-      let novaCampanha = new CampanhaVO(
+    if(!this.isFormularioValido()) {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
+    let novaCampanha: CampanhaVO;
+    if(this.imagemCampanha != null) {
+      let campanha = new CampanhaVO(
         this.formCadastroCampanha.value.titulo,
         this.imagemCampanha.split(',')[1],
         this.formCadastroCampanha.value.descricao,
         this.emailUsuarioLogado
-      );
+        );
+        novaCampanha = campanha;
+    } else {
+      let campanha = new CampanhaVO(
+        this.formCadastroCampanha.value.titulo,
+        "",
+        this.formCadastroCampanha.value.descricao,
+        this.emailUsuarioLogado
+        );
+        novaCampanha = campanha;
+    }
       
       this.campanhaService.cadastrarCampanha(novaCampanha).subscribe(() => {
         alert('Campanha adicionada com sucesso!');
@@ -85,15 +100,11 @@ export class IndexComponent implements OnInit {
       this.image = null;
       this.formCadastroCampanha.reset();
       this.ngOnInit();
-    } else {
-      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
-      return;
-    }
   }
 
   public isFormularioValido(): boolean {
     let isCamposValidos = true;
-    if(this.formCadastroCampanha.value.titulo == null || this.formCadastroCampanha.value.descricao) {
+    if(this.formCadastroCampanha.value.titulo == null || this.formCadastroCampanha.value.descricao == null) {
       isCamposValidos = false;
     }
     return isCamposValidos;

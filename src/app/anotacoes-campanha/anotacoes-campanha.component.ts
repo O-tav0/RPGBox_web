@@ -16,7 +16,7 @@ export class AnotacoesCampanhaComponent implements OnInit {
   public displayFormulario: boolean = false;
   public displayLabel: boolean = false;
   public anotacaoSelecionada: AnotacaoDTO;
-  public descricao: string;
+  public descricao: any = null;
   public tituloForm: string;
   public tipoOperacao: number;
 
@@ -44,6 +44,12 @@ export class AnotacoesCampanhaComponent implements OnInit {
   }
 
   public enviarAnotacao(): void {
+
+    if(!this.isAnotacaoValida()) {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios.")
+      return;
+    }
+
     const novaAnotacao = new AnotacaoVO(this.sqCampanhaSelecionada, this.descricao);
     
     if(this.tipoOperacao == 1) {
@@ -57,6 +63,16 @@ export class AnotacoesCampanhaComponent implements OnInit {
         this.carregarAnotacoesDaCampanha();
       })
     }
+
+    this.descricao = null;
+  }
+
+  public isAnotacaoValida(): boolean {
+    let anotacaoValida = true;
+    if(this.descricao == null) {
+      anotacaoValida = false;
+    }
+    return anotacaoValida;
   }
 
   public mostrarFormulario(tipoOperacao: number, anotacao: any): void {
