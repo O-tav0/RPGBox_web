@@ -47,16 +47,35 @@ export class CombatesCampanhaComponent implements OnInit {
   public tituloCombateAtualizar: string;
 
   public cadastrarCombate(): void {
-    const personagens = this.preencherObjetoPersonagensSelecionados(this.personagensSelecionados);
-    const novoCombate = new CombateVO(this.sqCampanhaSelecionada, this.formCadastroCombate.value.tituloCombate, personagens); 
 
-    this.combateService.cadastrarCombnate(novoCombate).subscribe(() => {
-      alert('Combate cadastro com sucesso!')
+    if(this.personagensSelecionados.length < 2) {
+      alert("O combate deve ter pelo menos 2 personagens!")
+      return;
+    }
+    
+    if(!this.isCamposValidos()) {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
+      const personagens = this.preencherObjetoPersonagensSelecionados(this.personagensSelecionados);
+      const novoCombate = new CombateVO(this.sqCampanhaSelecionada, this.formCadastroCombate.value.tituloCombate, personagens); 
+  
+      this.combateService.cadastrarCombnate(novoCombate).subscribe(() => {
+        alert('Combate adicionado com sucesso!')
+        this.carregarCombatesDaCampanha();
+      })
+  
       this.carregarCombatesDaCampanha();
-    })
+      this.formCadastroCombate.reset();
+    
+  }
 
-    this.carregarCombatesDaCampanha();
-    this.formCadastroCombate.reset();
+  public isCamposValidos(): boolean {
+    let camposValidos = true;
+    if(this.formCadastroCombate.value.tituloCombate == null) {
+      camposValidos = false;
+    }
+    return camposValidos;
   }
 
   public atualizarCombate(): void {
@@ -145,7 +164,7 @@ export class CombatesCampanhaComponent implements OnInit {
   public excluirCombate(sqCombate: number): void {
     if (confirm("Deseja deletar o combate ?") == true) {
       this.combateService.deletarCombate(sqCombate).subscribe((response) => {
-        alert(response)
+        alert("Combate excluído com sucesso!")
         this.carregarCombatesDaCampanha();
       })
     }

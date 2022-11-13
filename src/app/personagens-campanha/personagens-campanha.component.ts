@@ -35,7 +35,7 @@ export class PersonagensCampanhaComponent implements OnInit {
   public tipoHabilidadeSelecionado: TipoHabilidade;
   public tipoHabilidadeSelecionadoAtualizado?:TipoHabilidade;
 
-  public habilidades: HabilidadePersonagem[];
+  public habilidades: HabilidadePersonagem[] = [];
   public habilidadesAtualizadas: HabilidadePersonagem[] = [];
   public display: boolean;
   public displayModalAtualizarHabilidade:boolean;
@@ -127,7 +127,6 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.displayCadastro = true;
   }
 
-
   public recuperaPersonagensDaCampanha(): void {
     const sqCampanhaSelecionada = parseInt(this.route.snapshot.params['sqCampanha'], 10);
     this.campanhaService.buscarPersonagensCampanhaPorTipo(sqCampanhaSelecionada).subscribe((resposta) => {
@@ -170,27 +169,52 @@ export class PersonagensCampanhaComponent implements OnInit {
       img = this.imagemPersonagem.split(',')[1]
     }
     
-    let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+    if(!this.isCamposValidos()) {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
+    if(!this.isHabilidadesValidas()) {
+      alert("Cadastre pelo menos uma habilidade!")
+      return;
+    }
+      let sqCampanha = parseInt(this.route.snapshot.params['sqCampanha'], 10);
+  
+      let novoPersonagem = new PersonagemVO(this.formCadastroPersonagem.value.nome, 
+        this.formCadastroPersonagem.value.raca, 
+        this.formCadastroPersonagem.value.classe, 
+        sqCampanha,
+        this.formCadastroPersonagem.value.vida,
+        img,
+        this.tipoSelecionado.nome.toUpperCase(),
+        this.formCadastroPersonagem.value.nivel,
+        this.habilidades);
+        
+        this.personagemService.cadastrarPersonagem(novoPersonagem).subscribe(() => {
+          alert('Personagem adicionado com sucesso!')
+          this.recuperaPersonagensDaCampanha();
+        })
+        this.formCadastroPersonagem.reset();
+        this.habilidades = [];
+        this.image = null;
+        this.imagemPersonagem = null;
+  }
 
-    let novoPersonagem = new PersonagemVO(this.formCadastroPersonagem.value.nome, 
-      this.formCadastroPersonagem.value.raca, 
-      this.formCadastroPersonagem.value.classe, 
-      sqCampanha,
-      this.formCadastroPersonagem.value.vida,
-      img,
-      this.tipoSelecionado.nome.toUpperCase(),
-      this.formCadastroPersonagem.value.nivel,
-      this.habilidades);
-      
-      this.personagemService.cadastrarPersonagem(novoPersonagem).subscribe(() => {
-        alert('Personagem cadastrado com sucesso!')
-        this.recuperaPersonagensDaCampanha();
-      })
+  public isCamposValidos(): boolean {
+    let isCamposValidos = true;
 
-      this.formCadastroPersonagem.reset();
-      this.habilidades = [];
-      this.image = null;
-      this.imagemPersonagem = null;
+    if(this.formCadastroPersonagem.value.nome == null ||
+       this.formCadastroPersonagem.value.raca == null ||
+       this.formCadastroPersonagem.value.classe == null ||
+       this.formCadastroPersonagem.value.vida == null ||
+       this.formCadastroPersonagem.value.nivel == null 
+      ) {
+        isCamposValidos = false;
+      }
+      return isCamposValidos;
+  }
+
+  public isHabilidadesValidas(): boolean {
+    return this.habilidades.length > 0
   }
 
   public atualizarPersonagem(): void {
@@ -229,8 +253,6 @@ export class PersonagensCampanhaComponent implements OnInit {
        this.displayAlteracao = false;
   }
 
-  
-
   public mostrarModalCadastroHabilidade() {
     this.display = true;
   }
@@ -240,7 +262,7 @@ export class PersonagensCampanhaComponent implements OnInit {
   }
 
   public excluirPersonagem(): void {
-    if (confirm("Deseja deletar o personagem ?") == true) {
+    if (confirm("Deseja deletar o "+ this.personagemSelecionado.nomePersonagem +"?") == true) {
       this.personagemService.deletarPersonagem(this.personagemSelecionado.sqPersonagem).subscribe((response) => {
         alert("Personagem deletado com sucesso!")
         this.recuperaPersonagensDaCampanha();
@@ -278,13 +300,10 @@ export class PersonagensCampanhaComponent implements OnInit {
     this.habilidadeSelecionada = habilidade
     this.tituloHabilidadeAtt = habilidade.nomeHabilidade;
     this.descricaoHabilidadeAtt = habilidade.descricaoHabilidade;
-    console.log(habilidade.nomeHabilidade)
     let tipoDaHabilidadeSelecionada = this.tiposDeHabilidades.find(o => o.nome == habilidade.tipoHabilidade)
-    console.log(tipoDaHabilidadeSelecionada)
     this.tipoHabilidadeSelecionadoAtualizado = tipoDaHabilidadeSelecionada;
     this.mostrarModalCadastroHabilidadeAtualizar();  
   }
-
 
   public fecharModalAtualizacao():void {
     this.habilidadeSelecionada = null;

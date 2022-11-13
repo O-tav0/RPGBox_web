@@ -24,11 +24,11 @@ export class GenrenciarCombateComponent implements OnInit {
   public combateSelecionado: CombateDTO;
   public products: PersonagemCombateDTO[] = [];
   
-  public personagemSelecionado: any;
+  public personagemSelecionado: any = null;
   public indexPersonagemSelecionado = 0;
   public nrTurno = 1;
-  public alvoSelecionado: PersonagemCombateDTO;
-  public danoCausado: number;
+  public alvoSelecionado: any;
+  public danoCausado: any;
   public acoesDoTurno: Acao[];
   public turnosDoCombate: Turno[];
 
@@ -61,11 +61,18 @@ export class GenrenciarCombateComponent implements OnInit {
   }
 
   public finalizarAcao(): void {
-    this.acoesDoTurno.push(this.getAcaoPersonagem());
-    this.reduzirVidaPersonagemAlvo();
-    this.trocarPersonagemSelecionado();
-    this.alvoSelecionado = this.products[0]
-    this.habilidadeSelecionada = this.personagemSelecionado.personagem.habilidadesPersonagem[0]
+    if(this.validaCamposAcao() == "ok") {
+      this.acoesDoTurno.push(this.getAcaoPersonagem());
+      this.reduzirVidaPersonagemAlvo();
+      this.trocarPersonagemSelecionado();
+  
+      this.alvoSelecionado = null
+      this.habilidadeSelecionada = null
+      this.danoCausado = null
+    } else {
+      alert(this.validaCamposAcao())
+      return;
+    }
   }
 
   public reduzirVidaPersonagemAlvo(): void {
@@ -96,9 +103,25 @@ export class GenrenciarCombateComponent implements OnInit {
   }
 
   public getAcaoPersonagem(): Acao {
-    console.log(this.products)
     const acao = new Acao(this.habilidadeSelecionada, this.transformaPersonagemLog(this.personagemSelecionado.personagem), this.transformaPersonagemLog(this.alvoSelecionado.personagem), this.danoCausado);
     return acao;
+  }
+
+  public validaCamposAcao(): string {
+    let mensagemValidacao = "ok";
+    if(this.habilidadeSelecionada == null) {
+      mensagemValidacao = "Selecione uma habilidade do personagem!"
+    }
+    if(this.alvoSelecionado == null) {
+      mensagemValidacao = "Selecione um alvo pra atacar!"
+    }
+    if(this.danoCausado == null) {
+      mensagemValidacao = "Insira o dano!"
+    }
+    if(this.danoCausado == 0) {
+      mensagemValidacao = "O dano tem que ser maior que zero!"
+    }
+    return mensagemValidacao;
   }
 
   public transformaPersonagemLog(personagem: PersonagemDTO): PersonagemLog {
@@ -136,7 +159,7 @@ export class GenrenciarCombateComponent implements OnInit {
     }
     this.logDoCombate.resumoCombate = this.turnosDoCombate;
     this.combateService.atualizarCombate(this.sqCombateSelecionado, this.logDoCombate).subscribe(() => {
-      alert('Combate atualizado com sucesso!')
+      alert('Combate finalizado com sucesso!')
       this.location.back();
     })
   }

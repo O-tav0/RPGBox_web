@@ -20,6 +20,16 @@ export class CadastroUsuarioComponent implements OnInit {
   });
 
   public cadastrarUsuario(): void {
+
+    if(!this.isSenhasValidas()) {
+      alert("As senhas estão diferentes. Preencha novamente!")
+      return;
+    } 
+    if(!this.isCamposValidos()) {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
+    
     let novoUsuario = new Usuario(
       0,
       this.formCadastroUsuario.value.nome,
@@ -44,6 +54,19 @@ export class CadastroUsuarioComponent implements OnInit {
     } catch (err) {
       alert(err);
     }
+
+  }
+
+  public isCamposValidos(): boolean {
+    let formularioValido = true;
+    if(this.formCadastroUsuario.value.nome == null || this.formCadastroUsuario.value.email == null || this.formCadastroUsuario.value.senha == null) {
+        formularioValido = false;
+      }
+    return formularioValido;
+  }
+
+  public isSenhasValidas(): boolean {
+    return this.formCadastroUsuario.value.senha == this.formCadastroUsuario.value.confirmaSenha;
   }
 
   public navegarParaTelaLogin(): void {

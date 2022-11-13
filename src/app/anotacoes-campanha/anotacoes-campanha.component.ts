@@ -48,7 +48,7 @@ export class AnotacoesCampanhaComponent implements OnInit {
     
     if(this.tipoOperacao == 1) {
       this.anotacaoService.cadastrarAnotacao(novaAnotacao).subscribe((resposta) => {
-        alert('Anotação cadastrada com sucesso!')
+        alert('Anotação adicionada com sucesso!')
         this.carregarAnotacoesDaCampanha();
       })
     } else {
@@ -77,7 +77,7 @@ export class AnotacoesCampanhaComponent implements OnInit {
   public excluirCombate(sqAnotacao: number): void {
     if (confirm("Deseja deletar a anotação ?") == true) {
       this.anotacaoService.deletarAnotacao(sqAnotacao).subscribe((response) => {
-        alert(response)
+        alert("Anotação excluída com sucesso!")
         this.carregarAnotacoesDaCampanha();
       })
     }

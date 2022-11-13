@@ -64,25 +64,39 @@ export class IndexComponent implements OnInit {
   }
 
   public cadastrarCampanha(): void {
-    console.log(this.imagemCampanha);
-    let novaCampanha = new CampanhaVO(
-      this.formCadastroCampanha.value.titulo,
-      this.imagemCampanha.split(',')[1],
-      this.formCadastroCampanha.value.descricao,
-      this.emailUsuarioLogado
-    );
-    
-    this.campanhaService.cadastrarCampanha(novaCampanha).subscribe(() => {
-      alert('Campanha cadastrada com sucesso!');
-      this.display = false;
-      this.imagemCampanha = null;
-      this.ngOnInit();
-    });
 
-    this.display = false;
-    this.imagemCampanha = null;
-    this.image = null;
-    this.formCadastroCampanha.reset();
+    if(this.isFormularioValido()) {
+      let novaCampanha = new CampanhaVO(
+        this.formCadastroCampanha.value.titulo,
+        this.imagemCampanha.split(',')[1],
+        this.formCadastroCampanha.value.descricao,
+        this.emailUsuarioLogado
+      );
+      
+      this.campanhaService.cadastrarCampanha(novaCampanha).subscribe(() => {
+        alert('Campanha adicionada com sucesso!');
+        this.display = false;
+        this.imagemCampanha = null;
+        this.ngOnInit();
+      });
+  
+      this.display = false;
+      this.imagemCampanha = "";
+      this.image = null;
+      this.formCadastroCampanha.reset();
+      this.ngOnInit();
+    } else {
+      alert("Algum campo não está preenchido, verifique e preencha todos os campos obrigatórios!")
+      return;
+    }
+  }
+
+  public isFormularioValido(): boolean {
+    let isCamposValidos = true;
+    if(this.formCadastroCampanha.value.titulo == null || this.formCadastroCampanha.value.descricao) {
+      isCamposValidos = false;
+    }
+    return isCamposValidos;
   }
 
   public tratarImagemSelecionada(files: FileList): void {
@@ -117,9 +131,9 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  public excluirCampanha(sqCampanha: number): void {
-    if (confirm("Deseja deletar a campanha ?") == true) {
-      this.campanhaService.deletarCampanha(sqCampanha).subscribe((response) => {
+  public excluirCampanha(campanha: CampanhaDTO): void {
+    if (confirm("Deseja deletar a campanha "+ campanha.tituloCampanha +"?") == true) {
+      this.campanhaService.deletarCampanha(campanha.sqCampanha).subscribe((response) => {
         alert(response)
         this.buscarCampanhasDoUsuario()
       })
@@ -135,7 +149,7 @@ export class IndexComponent implements OnInit {
     );
 
     this.campanhaService.alterarCampanha(novaCampanha, this.campanhaSelecionada.sqCampanha).subscribe(() => {
-      alert('Campanha alterada com sucesso!');
+      alert('Campanha atualizada com sucesso!');
       this.displayAlterarModal = false;
       this.imagemCampanhaAtualizar = null;
       this.titulo = "",
