@@ -2,26 +2,36 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
-## Development server
+# Personagens da campanha
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Tela 1](https://user-images.githubusercontent.com/70761755/219470766-0a1001c6-1b01-4214-8696-8456fb55e698.png)
 
-## Code scaffolding
+# Rolagem de dados
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![RolagemDados](https://user-images.githubusercontent.com/70761755/219470846-4ba18f75-f989-40d6-9406-1f9e3d55be2a.png)
 
-## Build
+# Menu
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Menu](https://user-images.githubusercontent.com/70761755/219470894-a1638492-3f6b-4176-8600-93469523a20d.png)
 
-## Running unit tests
+# Logs do combate
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![LogsCombate](https://user-images.githubusercontent.com/70761755/219470976-509c02ab-0bc5-4cd5-9599-cef45808dff9.png)
 
-## Running end-to-end tests
+# Linha do tempo de uma campanha
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Linha1](https://user-images.githubusercontent.com/70761755/219471039-764cac6e-80ac-4359-96c5-cad3e4dd5442.png)
+![Linha2](https://user-images.githubusercontent.com/70761755/219471042-0eb4d535-ab8b-43f4-ada1-4238f1665fbf.png)
 
-## Further help
+# Lista de combates
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Combates2png](https://user-images.githubusercontent.com/70761755/219471166-1ccbace1-cc14-4fca-a74e-f807e0389462.png)
+
+# Combate ativo
+
+![Combate](https://user-images.githubusercontent.com/70761755/219471316-9c74c5af-fb37-4f2e-a819-4fae1c189dae.png)
+
+# Anotações da campanha
+
+![Anotacoes](https://user-images.githubusercontent.com/70761755/219471364-d7ef5721-b82f-45df-8f97-68d875ec428f.png)
+
